@@ -8,6 +8,10 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\FacebookSocialiteController;
+use App\Http\Livewire\CartComponent;
+use App\Http\Livewire\CheckoutComponent;
+use App\Http\Livewire\HomeComponent;
+use App\Http\Livewire\ShopComponent;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +24,9 @@ use App\Http\Controllers\FacebookSocialiteController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
 
@@ -52,3 +56,7 @@ Route::group(['middleware' => ['auth']], function() {
 
 });
 
+Route::get('/',HomeComponent::class);
+Route::get('/shop',ShopComponent::class);
+Route::get('/checkout',CheckoutComponent::class);
+Route::get('/cart',CartComponent::class);

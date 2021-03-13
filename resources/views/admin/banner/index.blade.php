@@ -17,10 +17,11 @@
                             <tr>
                                 <th>S.no</th>
                                 
-                                <th>title</th>
-                                <th>image</th>
-                                <th>added_by</th>
-                                <th>status</th>
+                                <th>Title</th>
+                                <th>Image</th>
+                                <th>Link</th>
+                                <th>Added By</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                        </thead>
@@ -32,6 +33,7 @@
                             
                             <td>{{$banner->title}}</td>
                             <td>{{$banner->image}}</td>
+                            <td>{{$banner->link}}</td>
                             <td>{{$banner->added_by}}</td>
      
                             <td>

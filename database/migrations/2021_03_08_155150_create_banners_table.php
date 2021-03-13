@@ -17,6 +17,7 @@ class CreateBannersTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('image');
+            $table->string('link')->nullable();
             $table->enum('status',['active','inactive'])->default('active');
             $table->unsignedInteger('added_by')->nullable();
             $table->foreignId('added_by')->references('id')->on('users')->onDelete('SET NULL');

@@ -11,6 +11,6 @@ class Banner extends Model
 
     protected $fillabe=[
 
-        'title','image','status','added_by'
+        'title','image','status','added_by','link',
     ];
 }
