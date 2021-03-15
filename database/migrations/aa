@@ -1,0 +1,13 @@
+            $table->string('title');
+            $table->string('slug')->unique();
+            $table->text('description')->nullable();
+            $table->enum('status',['active','inactive'])->default('active');
+            $table->string('image')->nullable();
+            $table->enum('show_in_menu',['yes','no'])->default('yes');
+
+
+             $table->unsignedInteger('parent_id');
+            $table->unsignedInteger('child_id');
+            $table->foreign('parent_id')->references('id')->on('categories')->onDelete('CASCADE');
+            $table->foreign('child_id')->references('id')->on('categories')->onDelete('CASCADE');
+           
