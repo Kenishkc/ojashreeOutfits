@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests\StoreValidation;
+use App\Models\Image;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -53,9 +54,47 @@ class ProductController extends Controller
         request()->validate([
             'name' => 'required',
             'detail' => 'required',
+            'price'=>'required',
+        
+            
             
         ]);
-        Product::create($request->all());
+        $products = new Product();
+        $products->name=$request->name;
+        $name = $request->name;
+        // for slug
+        $url=preg_replace('/[^A-Za-z0-9]+/',' ', $name);
+        $url=strtolower(trim($url));
+        $url=str_replace(" ","-",$url);
+
+        $products->price=$request->price;
+        $products->manuf_date=$request->manuf_date; 
+        $products->discount_price=$request->discount_price;
+        $products->detail=$request->detail;
+        $products->short_detail=$request->short_detail;
+        $products->stock=$request->stock;
+        $products->slug=$url;
+        $products->save();
+       
+
+
+        //for image 
+
+        if ($request->hasFile('images')) {
+            foreach($request->file('images') as $image)
+            {
+            $imageName=time().'.'.$image->getClientOriginalName();
+            $image->move(public_path('images'),$imageName);
+    
+             Image::Create([
+                 'product_id'=>$products->id,
+                 'images'=> $imageName,
+             ]);
+            }
+
+        }
+        
+
         return redirect()->route('products.index')
                         ->with('success','Product created successfully.');
     }
@@ -117,4 +156,12 @@ class ProductController extends Controller
                         ->with('success','Product deleted successfully');
     
                     }
+
+                    // public function viewImage($id) {
+                    //     $products = Product::findOrFail($id);
+                    //     $images = Image::where('product_id', $id)->get();
+                    //     return view('product.viewimage',compact('products', 'images'));
+                    
+                    // }
 }
+    

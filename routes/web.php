@@ -60,3 +60,6 @@ Route::get('/',HomeComponent::class);
 Route::get('/shop',ShopComponent::class);
 Route::get('/checkout',CheckoutComponent::class);
 Route::get('/cart',CartComponent::class);
+
+//For Image
+Route::get('/viewimage/{id}', [ProductController::class,'viewImage']);
