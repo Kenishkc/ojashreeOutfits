@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Contracts\Role;
 use App\Http\Controllers\RoleController;
@@ -53,6 +54,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('users',UserController::class);
     Route::resource('products',ProductController::class);
     Route::resource('banner', BannerController::class);
+    Route::resource('category',CategoryController::class);
 
 });
 

@@ -17,8 +17,13 @@
 
   <!-- Custom styles for this template-->
   <link href="{{ asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
+  <link href="{{ asset('css/custome.css')}}" rel="stylesheet">
    <!-- css of  DataTAble -->
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.css">
+ 
+
+
+  @toastr_css
 </head>
 
 <body id="page-top">
@@ -76,4 +81,6 @@
       @include('admin.partials.script')
 </body>
 
+@toastr_js
+@toastr_render
 </html>
