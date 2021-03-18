@@ -45,7 +45,7 @@
 
 
 
-    <form action="{{ route('products.store') }}" method="POST">
+    <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
 
     	@csrf
 
@@ -57,7 +57,7 @@
 
 		        <div class="form-group">
 
-		            <strong>Name:</strong>
+		            <strong>Product Name:</strong>
 
 		            <input type="text" name="name" class="form-control" placeholder="Name">
 
@@ -69,39 +69,95 @@
 
                     <div class="form-group">
 
-                        <strong>price:</strong>
+                        <strong>Price:</strong>
 
-                        <input class="form-control"  name="price" placeholder="Enter the price"></input>
+                        <input class="form-control"  name="price" placeholder="Rs."></input>
+                    </div>
+
+            </div>
+            
+
+            <div class="col-xs-12 col-sm-12 col-md-12">
+
+                    <div class="form-group">
+
+                        <strong>Discounted Price:</strong>
+
+                        <input class="form-control"  name="discount_price" placeholder="Rs."></input>
                     </div>
 
             </div>
 
             <div class="col-xs-12 col-sm-12 col-md-12">
 
+            <div class="from-group">
+
+            <strong>Manufacturer Date: </strong>
+
+            <input class="from-control" name="manuf_date" type="date"></input>
+            
+            </div>
+            </div>
+
+            <!-- <div class="col-xs-12 col-sm-12 col-md-12">
+
                     <div class="form-group">
 
-                        <strong>category Id:</strong>
+                        <strong>Category type:</strong>
 
-                        <input class="form-control"  name="cat_id" placeholder="Enter the category id"></input>
-                    </div>
+                        <select class="form-control" type="drop4down"  name="cat_id" placeholder="Enter the category id"></select>
+
+            </div> -->
+
+            <div class="col-xs-12 col-sm-12 col-md-12">
+
+            <div class="from-group"> 
+
+            <label for ="file">Select Image:</label>
+
+            <input name="images[]" type="file" multiple="multiple" class="form-control" />
+                            <img src="" id="previewImg" style="max-width:130px;margin-top:20px;">
+                           
 
             </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12">
+
+            <div class="form-group">
+
+                <strong>Short Detail:</strong>
+
+                <input class="form-control"  name="short_detail" placeholder="Short Descriptions"></input>
+
+            </div>
+
+            </div>
+            
+		    <div class="col-xs-12 col-sm-12 col-md-12">
+
+                <div class="form-group">
+
+                    <strong>Descriptions:</strong>
+
+                    <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail"></textarea>
+
+                </div>
+
+                </div>
 
 		    <div class="col-xs-12 col-sm-12 col-md-12">
 
 		        <div class="form-group">
 
-		            <strong>Detail:</strong>
+		            <strong> IN Stock :</strong>
 
-		            <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail"></textarea>
+		            <input class="form-control" name="stock" placeholder="Availabe in stock"></input>
 
 		        </div>
 
 		    </div>
-
-
-
-
+                      
 		    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
 
 		            <button type="submit" class="btn btn-primary">Submit</button>
@@ -114,8 +170,5 @@
 
     </form>
 
-
-
-<p class="text-center text-primary"><small>Tutorial by HDTuto.com</small></p>
 
 @endsection
