@@ -14,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+       $category=Category::orderBy('id','ASC')->get();
+       return view('admin.category.index',compact('category'));
     }
 
     /**
@@ -22,9 +23,10 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+     public function create()
     {
-        //
+        $parent =Category::all();
+        return view('admin.category.add',compact('parent'));
     }
 
     /**
@@ -34,9 +36,38 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        
+      
+        if($request->hasFile('image'))
+       {
+        $image=$request->file('image');
+        $imageName = time().'.'.$image->getClientOriginalExtension(); 
+        $image->move(public_path('images'), $imageName);
+       }else{
+            $imageName=null;
+       }
+       $title=$request->title;
+       $url=preg_replace('/[^A-Za-z0-9]+/',' ',$title);
+       $url=strtolower(trim($url));
+       $url=str_replace(" ","-",$url);
+    
+       
+ 
+        $category= Category::create([
+            'title'=>$request->title,
+            'description'=>$request->description,
+            'status'=>$request->status,
+            'show_in_menu'=>$request->show_in_menu,
+            'slug'=>$url,
+            'image'=>$imageName,
+            'parent_id'=>$request->parent_id,
+        ]);
+        toastr()->success('Category has been saved successfully!');
+
+        return redirect()->route('category.index');
     }
+
 
     /**
      * Display the specified resource.
@@ -46,7 +77,8 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        
+       return view('admin.category.show',compact('category'));
     }
 
     /**
@@ -57,7 +89,8 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        $parent =Category::all();
+       return view('admin.category.edit',compact('category','parent'));
     }
 
     /**
@@ -82,4 +115,6 @@ class CategoryController extends Controller
     {
         //
     }
+
+
 }
