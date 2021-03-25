@@ -21,6 +21,7 @@ class CreateCategoriesTable extends Migration
             $table->enum('status',['active','inactive'])->default('active');
             $table->string('image')->nullable();
             $table->enum('show_in_menu',['yes','no'])->default('yes');
+            $table->unsignedBigInteger('parent_id')->nullable();
             $table->timestamps();
         });
     }
