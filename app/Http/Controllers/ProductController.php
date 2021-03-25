@@ -55,28 +55,32 @@ class ProductController extends Controller
             'name' => 'required',
             'detail' => 'required',
             'price'=>'required',
+            'manuf_date'=>'required',
+            'discount_price'=>'required',
+            'short_detail'=>'required',
+            'stock'=>'required',
+
         
             
             
         ]);
-        $products = new Product();
-        $products->name=$request->name;
+        $product = new Product();
+        $product->name=$request->name;
         $name = $request->name;
         // for slug
         $url=preg_replace('/[^A-Za-z0-9]+/',' ', $name);
         $url=strtolower(trim($url));
         $url=str_replace(" ","-",$url);
 
-        $products->price=$request->price;
-        $products->manuf_date=$request->manuf_date; 
-        $products->discount_price=$request->discount_price;
-        $products->detail=$request->detail;
-        $products->short_detail=$request->short_detail;
-        $products->stock=$request->stock;
-        $products->slug=$url;
-        $products->save();
+        $product->price=$request->price;
+        $product->manuf_date=$request->manuf_date; 
+        $product->discount_price=$request->discount_price;
+        $product->detail=$request->detail;
+        $product->short_detail=$request->short_detail;
+        $product->stock=$request->stock;
+        $product->slug=$url;
+        $product->save();
        
-
 
         //for image 
 
@@ -87,7 +91,7 @@ class ProductController extends Controller
             $image->move(public_path('images'),$imageName);
     
              Image::Create([
-                 'product_id'=>$products->id,
+                 'product_id'=>$product->id,
                  'images'=> $imageName,
              ]);
             }
@@ -116,8 +120,8 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
-    {
+    public function edit(Product $product )
+    {  
         return view('admin.products.edit',compact('product'));
     }
 
@@ -135,8 +139,16 @@ class ProductController extends Controller
             'name' => 'required',
 
             'detail' => 'required',
+            'price'=>'required',
+            'manuf_date'=>'required',
+            'discount_price'=>'required',
+            'short_detail'=>'required',
+            'stock'=>'required',
+            
 
         ]);
+       
+        
         $product->update($request->all());
         return redirect()->route('products.index')
 
