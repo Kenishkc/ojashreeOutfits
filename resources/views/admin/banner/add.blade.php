@@ -21,117 +21,113 @@
 </div>
 
 
+<div class="container-fluid">
 
-@if (count($errors) > 0)
+  <form action="{{ route('banner.store') }}" method="POST" enctype="multipart/form-data">
 
-  <div class="alert alert-danger">
+    @csrf
 
-    <strong>Whoops!</strong> There were some problems with your input.<br><br>
 
-    <ul>
 
-       @foreach ($errors->all() as $error)
+       <div class="row">
 
-         <li>{{ $error }}</li>
+      <div class="col-xs-12 col-sm-12 col-md-12">
 
-       @endforeach
+          <div class="form-group">
 
-    </ul>
+              <strong>Bannner Title :</strong>
+
+              <input type="text" name="title" class="form-control" placeholder="Enter banner title">
+
+          </div>
+
+      </div>
+
+          <div class="col-xs-12 col-sm-12 col-md-12">
+
+                  <div class="form-group">
+
+                      <strong>Special offer:</strong>
+
+                      <input class="form-control"  name="offer" placeholder="Enter the special offer "></input>
+                  </div>
+
+          </div>
+          
+
+          <div class="col-xs-12 col-sm-12 col-md-12">
+
+                  <div class="form-group">
+
+                      <strong>Link:</strong>
+
+                      <input class="form-control"  name="link" placeholder="Enter the link "></input>
+                  </div>
+
+          </div>
+
+          <div class="col-xs-12 col-sm-12 col-md-12">
+
+          <div class="from-group"> 
+
+          <strong>Select Image:</strong>
+
+          <input name="image" type="file"  onchange="readUrl(this,'preview')" class="form-control" />
+          <img src="" id="preview" width="150px;"/>  
+        </div>
+
+
+           <div class="col-xs-12 col-sm-12 col-md-12">
+
+              <div class="form-group">
+
+                  <strong>Descriptions:</strong>
+
+                  <textarea class="form-control" style="height:150px" name="description" placeholder="Enter the description"></textarea>
+
+              </div>
+
+              </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-12">
+
+          <div class="form-group">
+
+              <strong> Status :</strong>
+              <select class="form-control"  name="status">     
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+                </select>
+              
+          </div>
+
+      </div>
+                    
+      <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+
+              <button type="submit" class="btn btn-primary">Submit</button>
+
+      </div>
 
   </div>
 
-@endif
 
 
-<div class="container-fluid">
-
-{!! Form::open(array('route' => 'banner.store','method'=>'POST','files'=> true)) !!}
-
- <div class="form-group row">
-    <strong>
-      {!! Form::label('title', 'Title:',['class' => 'col-sm-3'])!!}
-    </strong>
-    <div class="col-sm-9">
-      {!! Form::text('title','',['placeholder' => 'Enter Banner Titile',
-      'class'=>"form-control (isset($errors->has('title')) ? 'is-invalid':'' )",
-      'required'=>true])!!}
-     
-     @if($errors->has('title'))
-       <div class="alert alert-danger">{{ $message }}</div>
-     @endif
-  </div> 
-</div>  
-
-<div class="form-group row">
-    <strong>
-      {!! Form::label('link', 'Link:',['class' => 'col-sm-3'])!!}
-    </strong>
-    <div class="col-sm-9">
-      {!! Form::text('link','',['placeholder' => 'Enter Banner link',
-      'class'=>"form-control (isset($errors->has('link')) ? 'is-invalid':'' )",
-      'required'=>true])!!}
-     
-     @if($errors->has('link'))
-       <div class="alert alert-danger">{{ $message }}</div>
-     @endif
-  </div> 
-</div>  
-
-
-
-
-
-<div class="form-group row">
-    <strong>
-      {!! Form::label('status','stat:',['class' => 'col-sm-3'])!!}
-    </strong>
-    <div class="col-sm-7">
-    {!! Form::select('status', ['active'=>'Active','inactive'=>'Inactive'],'', [
-    'class' => "form-control (isset($errors->has('status')) ? 'is-invalid': '' )"]) !!}
-            
-     @if($errors->has('status'))
-       <div class="alert alert-danger">{{ $message }}</div>
-     @endif
-  </div> 
-</div>
-
-
-
-<div class="col-xs-9 col-sm-9 col-md-9">
-    <div class="form-group row ">
-        <strong>{!! Form::label('image', 'Image:')!!}</strong>
-        {{ Form::file('image', array( 'onchange' => 'loadFile(event)','require' => 'true')) }} 
-        @if($errors->has('image'))
-       <div class="alert alert-danger">{{ $message }}</div>
-     @endif
-<div class="col-xs-3 col-sm-3 col-md-3">
-<img id="output" class="rounded mx-auto d-block"  style="height: 100px; width:350 px;"/>
-
-</div>
-
-
-
-
-</div>
-    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-
-    {!! Form::submit('Submit', ['class' => 'btn btn-success']) !!}
-
-    </div>
-
-</div>
-
-{!! Form::close() !!}
-
+  </form>
 
 @endsection
 
 <script>
-  var loadFile = function(event) {
-    var output = document.getElementById('output');
-    output.src = URL.createObjectURL(event.target.files[0]);
-    output.onload = function() {
-      URL.revokeObjectURL(output.src) // free memory
-    }
+function readUrl(input,id){
+if(input.files && input.files[0]){
+
+  var reader = new FileReader();
+  reader.onload = function(e){
+    $("#" + id).attr("src",e.target.result);
   };
+  reader.readAsDataURL(input.files[0]);
+}
+
+}
+
 </script>

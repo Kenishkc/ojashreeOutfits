@@ -102,7 +102,41 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $title=$request->title;
+        $url=preg_replace('/[^A-Za-z0-9]+/',' ',$title);
+        $url=strtolower(trim($url));
+        $url=str_replace(" ","-",$url);
+     
+         $category= Category::create([
+             'title'=>$request->title,
+             'description'=>$request->description,
+             'status'=>$request->status,
+             'show_in_menu'=>$request->show_in_menu,
+             'slug'=>$url,
+             'image'=>$imageName,
+             'parent_id'=>$request->parent_id,
+         ]);
+         if($request->hasFile('image'))
+         {
+          $image=$request->file('image');
+          $imageName = time().'.'.$image->getClientOriginalExtension(); 
+          $image->move(public_path('images'), $imageName);
+          
+          $oldFilename=$category->image;
+          $category->image=$imageName;        
+          File::delete(public_path('images/'. $oldFilename));
+          $category->update([
+              'image'=>$imageName,
+          ]);
+          
+          }
+
+
+         toastr()->success('Category has Update been saved successfully!');
+ 
+         return redirect()->route('category.index');
+
+
     }
 
     /**

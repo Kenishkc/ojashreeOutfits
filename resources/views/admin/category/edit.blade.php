@@ -45,17 +45,16 @@
                             <div class="form-group">
                                 <label for ="status">Show in Menu</label>
                                 <select type="dropdown" class="form-control" name="show_in_menu">
-                                   <option value="yes">Yes</option>
-                                   <option value="no">No</option>
+                                   <option value="yes"{{$category->show_in_menu== 'yes' ?'selected': ''}}>Yes</option>
+                                   <option value="no"{{$category->show_in_menu== 'no' ?'selected': ''}}>No</option>
                                 </select> 
                             </div>
 
                             <div class="form-group">
                                 <label for ="status">Parent</label>
                                 <select type="dropdown" class="form-control" name="parent_id">
-                                  <option value="NULL">Parent</option>
                                     @foreach ($parent as $p)
-
+                                     <option value="NULL">Parent</option>
                                        <option value="{{$p->id}}"{{$p->id==$category->id ?'selected': ''}}>{{$p->title}}</option>
                                     @endforeach
                                 </select> 
@@ -71,7 +70,7 @@
                                 @error('image')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
-                                <img src="" class="img img-responsive" height="100px;"  id="preview"/>
+                                <img src="{{asset('images')}}/{{$category->image}}" class="img img-responsive" height="100px;"  id="preview"/>
                             
                             </div>
 
