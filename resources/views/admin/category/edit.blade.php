@@ -9,8 +9,8 @@
                <div class="card-body">
         
               
-                        <form method="POST" action="{{route('category.store')}}" enctype="multipart/form-data" >
-                           
+                        <form method="POST" action="{{route('category.update',$category)}}" enctype="multipart/form-data" >
+                           @method('PUT')
                             @csrf
     
                 
@@ -45,19 +45,23 @@
                             <div class="form-group">
                                 <label for ="status">Show in Menu</label>
                                 <select type="dropdown" class="form-control" name="show_in_menu">
-                                   <option value="yes">Yes</option>
-                                   <option value="no">No</option>
+                                   <option value="yes"{{$category->show_in_menu== 'yes' ?'selected': ''}}>Yes</option>
+                                   <option value="no"{{$category->show_in_menu== 'no' ?'selected': ''}}>No</option>
                                 </select> 
                             </div>
 
                             <div class="form-group">
                                 <label for ="status">Parent</label>
                                 <select type="dropdown" class="form-control" name="parent_id">
-                                  <option value="NULL">Parent</option>
+                                    @if ($category->parent_id == NULL){
+                                     <option value="">Parent</option>
+                                    }@else{
                                     @foreach ($parent as $p)
-
-                                       <option value="{{$p->id}}"{{$p->id==$category->id ?'selected': ''}}>{{$p->title}}</option>
-                                    @endforeach
+                                   
+                                       <option value="{{$p->parent_id}}"{{$p->id==$category->id ?'selected': ''}}>{{$p->title}}</option>
+                                    
+                                       @endforeach
+                                    }@endif
                                 </select> 
                             </div>
 
@@ -71,7 +75,7 @@
                                 @error('image')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
-                                <img src="" class="img img-responsive" height="100px;"  id="preview"/>
+                                <img src="{{asset('images')}}/{{$category->image}}" class="img img-responsive" height="100px;"  id="preview"/>
                             
                             </div>
 

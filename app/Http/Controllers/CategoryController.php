@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
+use File;
+
 
 class CategoryController extends Controller
 {
@@ -102,7 +105,34 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $slug = SlugService::createSlug(Category::class, 'slug', $request->title);
+         $category= Category::create([
+             'title'=>$request->title,
+             'description'=>$request->description,
+             'status'=>$request->status,
+             'show_in_menu'=>$request->show_in_menu,
+             'slug'=>$slug,
+             'parent_id'=>$request->parent_id,
+         ]);
+         if($request->hasFile('image'))
+         {
+          $image=$request->file('image');
+          $imageName = time().'.'.$image->getClientOriginalExtension(); 
+          $image->move(public_path('images'), $imageName);
+          
+          $oldFilename=$category->image;
+          $category->image=$imageName;        
+          File::delete(public_path('images/'. $oldFilename));          
+          $category->update([
+              'image'=>$imageName,
+          ]);
+          
+          }
+         toastr()->success('Category has Update been saved successfully!');
+ 
+         return redirect()->route('category.index');
+
+
     }
 
     /**

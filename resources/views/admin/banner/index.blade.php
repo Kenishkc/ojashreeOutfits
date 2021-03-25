@@ -20,7 +20,9 @@
                                 <th>Title</th>
                                 <th>Image</th>
                                 <th>Link</th>
+                                <th>Offer</th>
                                 <th>Added By</th>
+                                <th>Description</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -32,16 +34,22 @@
                             <td>{{ $loop->iteration }}</td>
                             
                             <td>{{$banner->title}}</td>
-                            <td>{{$banner->image}}</td>
+                            <td>
+                                <img src="{{asset('home_slider')}}/{{$banner->image}}" height="150px;" width="200px;"/>
+
+                            </td>
                             <td>{{$banner->link}}</td>
+                            <td>{{$banner->offer}}</td>
                             <td>{{$banner->added_by}}</td>
      
+                            <td>{{$banner->description}}</td>
+
                             <td>
     
                              
                                <input data-id="{{$banner->id}}" class="toggle-class" type="checkbox" data-onstyle="success" 
                                data-offstyle="danger" data-toggle="toggle" data-on="Active"  data-height="10"
-                               data-off="InActive" {{ $s->status ? 'checked' : '' }}>
+                               data-off="InActive" {{ $banner->status ? 'checked' : '' }}>
 
                             </td>
         

@@ -312,7 +312,7 @@
   <!-- / menu -->
   <!-- / Subscribe section -->
 
-    {{$slot}}
+   @yield('content')
 
   <!-- footer -->  
   <footer id="aa-footer">
