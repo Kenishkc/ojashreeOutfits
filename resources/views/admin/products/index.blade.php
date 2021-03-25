@@ -44,10 +44,16 @@
         <tr>
 
             <th>No</th>
-
             <th>Name</th>
-
             <th>Details</th>
+            <th>Price</th>
+            <th>Discounted Price</th>
+            <th>Short Details</th>
+            <th>Manufactured Date</th>
+            <th>slug</th>
+            <th>status</th>
+
+            
 
             <th width="280px">Action</th>
 
@@ -58,11 +64,15 @@
 	    <tr>
 
 	        <td>{{ ++$i }}</td>
-
 	        <td>{{ $product->name }}</td>
-
-	        <td>{{ $product->detail }}</td>
-
+            <td>{{ $product->detail }}</td>
+            <td>{{$product->price}}</td>
+            <td>{{$product->discount_price}}</td>
+            <td>{{$product->short_detail}}</td>
+            <td>{{$product->manuf_date}}</td>
+            <td>{{$product->slug}}</td>
+            <td>{{$product->stock}}</td>
+	        
 	        <td>
 
                 <form action="{{ route('products.destroy',$product->id) }}" method="POST">

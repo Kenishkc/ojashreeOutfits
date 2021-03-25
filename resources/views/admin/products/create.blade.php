@@ -121,7 +121,6 @@
             <input name="images[]" type="file" multiple="multiple" class="form-control" />
                             <img src="" id="previewImg" style="max-width:130px;margin-top:20px;">
                            
-
             </div>
             </div>
 
