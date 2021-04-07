@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\StoreValidation;
+use App\Models\Category;
 use App\Models\Image;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -40,7 +41,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.products.create');
+        $category=Category::all();
+        return view('admin.products.create',compact('category'));
     }
 
     /**
@@ -72,14 +74,15 @@ class ProductController extends Controller
         $url=strtolower(trim($url));
         $url=str_replace(" ","-",$url);
 
-        $product->price=$request->price;
-        $product->manuf_date=$request->manuf_date; 
-        $product->discount_price=$request->discount_price;
-        $product->detail=$request->detail;
-        $product->short_detail=$request->short_detail;
-        $product->stock=$request->stock;
-        $product->slug=$url;
-        $product->save();
+        $products->price=$request->price;
+        $products->manuf_date=$request->manuf_date; 
+        $products->discount_price=$request->discount_price;
+        $products->detail=$request->detail;
+        $products->short_detail=$request->short_detail;
+        $products->stock=$request->stock;
+        $products->cat_id=$request->cat_id;
+        $products->slug=$url;
+        $products->save();
        
 
         //for image 

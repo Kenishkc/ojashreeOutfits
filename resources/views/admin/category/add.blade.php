@@ -50,7 +50,7 @@
                             <div class="form-group">
                                 <label for ="status">Parent</label>
                                 <select type="dropdown" class="form-control" name="parent_id">
-                                  <option value="NULL">Parent</option>
+                                  <option value="">Parent</option>
                                     @foreach ($parent as $p)
                                        <option value="{{$p->id}}">{{$p->title}}</option>
                                     @endforeach

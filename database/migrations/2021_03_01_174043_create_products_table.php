@@ -21,10 +21,11 @@ class CreateProductsTable extends Migration
             $table->string('discount_price')->nullable();
             $table->text('detail');
             $table->text('short_detail')->nullable(); 
+            $table->string('cat_id')->nullable();
             $table->string('stock');
             $table->string('slug');
             $table->timestamps();
-            // $table->foreignId('cat_id')->nullable();
+            
             
         });
     }
