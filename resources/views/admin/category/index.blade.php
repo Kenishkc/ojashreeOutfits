@@ -4,15 +4,8 @@
 
 <section style="padding-top:60px;">
     <div class="container">
-        <div class="col-md-12">
-            <div class="card">
-            <div class="card-header text-center text-bold bg-secondary">
-                        <h1>
-                        Category List
-                        </h1>
-                    </div>
-            
-
+        <div class="col-md-12">    
+           
                        <table class="table table-striped" id="datatable">
 
                        <thead class="thead-dark">
@@ -75,7 +68,7 @@
                     </div>
                     <a href="{{route('category.create')}}" class="btn btn-outline-success btn-sm">Create New Category</a>
                 </div>
-        </div>
+        
     </div>
 </div>
 </section> 
@@ -89,7 +82,7 @@
       
         <div class="modal-content">
 			<div class="modal-header bg-danger ">				
-				<h4 class="modal-title w-100">Are you sure?</h4>	
+				<h4 class="modal-title text-white w-100">Are you sure?</h4>	
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 			</div>
 			<div class="modal-body">
@@ -105,30 +98,6 @@
     </form>
     </div>
 </div>
-
-<script>
-function handeldelete(id){
-    var form = document.getElementById('deletecategory')
-    form.action='category/' +id
-    
-    $('#deletemodal').modal('show')
-}
-
-    $(function() {
-      $('.toggle-class').change(function() {
-          var status = $(this).prop('checked') == true ? inactive : active; 
-          var id = $(this).data('id'); 
-           
-          $.ajax({
-              type: "GET",
-              dataType: "json",
-              url: '/status',
-              data: {'status': status, 'id': id},
-              success: function(data){
-                  alert(data.success)
-              }
-          });
-      })
-    })
-</script>  
+ 
 @endsection
+

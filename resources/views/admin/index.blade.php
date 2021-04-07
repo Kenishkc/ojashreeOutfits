@@ -21,6 +21,12 @@
   <link href="{{ asset('css/custome.css')}}" rel="stylesheet">
    <!-- css of  DataTAble -->
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.css">
+
+  {{-- <link href="{{asset('css/fresh-bootstrap-table.css')}}" rel="stylesheet" /> --}}
+
+  <!-- Fonts and icons -->
+  <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet">
+  <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300" rel="stylesheet" type="text/css">
  
 
 

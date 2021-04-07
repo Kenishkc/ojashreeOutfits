@@ -106,7 +106,7 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $slug = SlugService::createSlug(Category::class, 'slug', $request->title);
-         $category= Category::create([
+         $category->update([
              'title'=>$request->title,
              'description'=>$request->description,
              'status'=>$request->status,
@@ -128,7 +128,7 @@ class CategoryController extends Controller
           ]);
           
           }
-         toastr()->success('Category has Update been saved successfully!');
+         toastr()->success('Category Has Update Successfully!');
  
          return redirect()->route('category.index');
 
@@ -143,7 +143,9 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+      $category->delete();
+      toastr()->error('Category Sucessfully Delete!');
+      return redirect()->route('category.index');
     }
 
 

@@ -47,6 +47,14 @@
 
             <th>Name</th>
 
+            <th>Image</th>
+
+            <th>Category</th>
+
+            <th>Price</th>
+            
+            <th>Stock</th>
+
             <th>Details</th>
 
             <th width="280px">Action</th>
@@ -60,6 +68,11 @@
 	        <td>{{ ++$i }}</td>
 
 	        <td>{{ $product->name }}</td>
+            <th> Image </th>
+            
+            <th>{{ $product->category->title }}</th>
+            <th>{{ $product->price }}</th>
+            <th>{{ $product->stock }}</th>
 
 	        <td>{{ $product->detail }}</td>
 

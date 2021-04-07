@@ -24,14 +24,16 @@
     <!-- Top Slider CSS -->
     <link href="css/sequence-theme.modern-slide-in.css" rel="stylesheet" media="all">
 
+
     <!-- Main style sheet -->
-    <link href="css/style.css" rel="stylesheet">    
+    <link href="css/style.css" rel="stylesheet"> 
+    <link href="css/customeuser.css" rel="stylesheet">   
 
     <!-- Google Font -->
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
     
-  @livewireStyles
+  
   </head>
   <body> 
    <!-- wpf loader Two -->
@@ -437,6 +439,9 @@
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="js/bootstrap.js"></script>  
   <!-- SmartMenus jQuery plugin -->
+ 
+ 
+ 
   <script type="text/javascript" src="js/jquery.smartmenus.js"></script>
   <!-- SmartMenus jQuery Bootstrap Addon -->
   <script type="text/javascript" src="js/jquery.smartmenus.bootstrap.js"></script>  
@@ -451,7 +456,11 @@
   <!-- Price picker slider -->
   <script type="text/javascript" src="js/nouislider.js"></script>
   <!-- Custom js -->
+
+ 
   <script src="js/custom.js"></script> 
-  @livewireScripts 
+  <script src="js/mycustome.js"></script> 
+
+
   </body>
 </html>

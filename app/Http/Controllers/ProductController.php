@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\StoreValidation;
+use App\Models\Category;
 use App\Models\Image;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -40,7 +41,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.products.create');
+        $category=Category::all();
+        return view('admin.products.create',compact('category'));
     }
 
     /**
@@ -73,6 +75,7 @@ class ProductController extends Controller
         $products->detail=$request->detail;
         $products->short_detail=$request->short_detail;
         $products->stock=$request->stock;
+        $products->cat_id=$request->cat_id;
         $products->slug=$url;
         $products->save();
        
