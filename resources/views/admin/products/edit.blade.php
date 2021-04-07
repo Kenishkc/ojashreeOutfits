@@ -82,6 +82,83 @@
 
 		    </div>
 
+            <div class="col-xs-12 col-sm-12 col-md-12">
+
+		        <div class="form-group">
+
+		            <strong>Price:</strong>
+
+		            <input type="text" name="price" value="{{ $product->price }}" class="form-control">
+
+		        </div>
+
+		    </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+
+		        <div class="form-group">
+
+		            <strong>Manufacturer Date:</strong>
+
+		            <input type="text" name="manuf_date" value="{{ $product->manuf_date }}" class="form-control">
+
+		        </div>
+
+		    </div>
+             <div class="col-xs-12 col-sm-12 col-md-12">
+
+		        <div class="form-group">
+
+		            <strong>Discount Price:</strong>
+
+		            <input type="text" name="discount_price" value="{{ $product->discount_price}}" class="form-control">
+
+		        </div>
+
+		    </div>
+             <div class="col-xs-12 col-sm-12 col-md-12">
+
+		        <div class="form-group">
+
+		            <strong>Short Details:</strong>
+
+		            <input type="text" name="short_detail" value="{{ $product->short_detail }}" class="form-control">
+
+		        </div>
+
+		    </div>
+            
+            <div class="col-xs-12 col-sm-12 col-md-12">
+
+		        <div class="form-group">
+
+		            <strong>Stock:</strong>
+
+		            <input type="text" name="stock" value="{{ $product->stock }}" class="form-control">
+
+		        </div>
+
+		    </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="from-group"> 
+
+                <label for ="file">Select Image:</label>
+
+                <input name="images[]" type="file" multiple="multiple" class="form-control" />
+                                <img src="" id="previewImg" style="max-width:130px;margin-top:20px;">
+                            
+
+                </div>
+
+                            <div class="column" style="padding-right:5px; float:center;"  >
+                        
+                            @foreach($product->images as $image)      
+                            <img  
+                            src="{{asset('images/'. $image->images)}}" alt="{{ $image->images }}" width="200" height="200">
+                            @endforeach
+                            
+                            </div>
+                            </div>
+         
 		    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
 
 		      <button type="submit" class="btn btn-primary">Submit</button>
@@ -94,8 +171,5 @@
 
     </form>
 
-
-
-<p class="text-center text-primary"><small>Tutorial by HDTuto.com</small></p>
 
 @endsection

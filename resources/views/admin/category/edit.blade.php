@@ -9,8 +9,8 @@
                <div class="card-body">
         
               
-                        <form method="POST" action="{{route('category.store')}}" enctype="multipart/form-data" >
-                           
+                        <form method="POST" action="{{route('category.update',$category)}}" enctype="multipart/form-data" >
+                           @method('PUT')
                             @csrf
     
                 
@@ -53,10 +53,15 @@
                             <div class="form-group">
                                 <label for ="status">Parent</label>
                                 <select type="dropdown" class="form-control" name="parent_id">
+                                    @if ($category->parent_id == NULL){
+                                     <option value="">Parent</option>
+                                    }@else{
                                     @foreach ($parent as $p)
-                                     <option value="NULL">Parent</option>
-                                       <option value="{{$p->id}}"{{$p->id==$category->id ?'selected': ''}}>{{$p->title}}</option>
-                                    @endforeach
+                                   
+                                       <option value="{{$p->parent_id}}"{{$p->id==$category->id ?'selected': ''}}>{{$p->title}}</option>
+                                    
+                                       @endforeach
+                                    }@endif
                                 </select> 
                             </div>
 
