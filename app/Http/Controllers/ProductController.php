@@ -57,12 +57,17 @@ class ProductController extends Controller
             'name' => 'required',
             'detail' => 'required',
             'price'=>'required',
+            'manuf_date'=>'required',
+            'discount_price'=>'required',
+            'short_detail'=>'required',
+            'stock'=>'required',
+
         
             
             
         ]);
-        $products = new Product();
-        $products->name=$request->name;
+        $product = new Product();
+        $product->name=$request->name;
         $name = $request->name;
         // for slug
         $url=preg_replace('/[^A-Za-z0-9]+/',' ', $name);
@@ -80,7 +85,6 @@ class ProductController extends Controller
         $products->save();
        
 
-
         //for image 
 
         if ($request->hasFile('images')) {
@@ -90,7 +94,7 @@ class ProductController extends Controller
             $image->move(public_path('images'),$imageName);
     
              Image::Create([
-                 'product_id'=>$products->id,
+                 'product_id'=>$product->id,
                  'images'=> $imageName,
              ]);
             }
@@ -119,8 +123,8 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
-    {
+    public function edit(Product $product )
+    {  
         return view('admin.products.edit',compact('product'));
     }
 
@@ -138,8 +142,16 @@ class ProductController extends Controller
             'name' => 'required',
 
             'detail' => 'required',
+            'price'=>'required',
+            'manuf_date'=>'required',
+            'discount_price'=>'required',
+            'short_detail'=>'required',
+            'stock'=>'required',
+            
 
         ]);
+       
+        
         $product->update($request->all());
         return redirect()->route('products.index')
 
