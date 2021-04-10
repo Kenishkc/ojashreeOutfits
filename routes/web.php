@@ -33,7 +33,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/',[UserPageController::class,'homePage']);
-    
+Route::get('/shop',[UserPageController::class,'shopPage']);   
 
 Route::get('/admin',[AdminController::class,'adminpage']);
 Route::get('/show-user',[AdminController::class,'getUsers']);
