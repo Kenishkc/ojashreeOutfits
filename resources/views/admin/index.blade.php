@@ -74,6 +74,7 @@
       @include('admin.partials.logoutModal')
   <!-- Bootstrap core JavaScript-->
       @include('admin.partials.script')
+      @yield('script')
 </body>
 
 </html>

@@ -158,6 +158,14 @@
                             
                             </div>
                             </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                            <form action="{{route('delete',$image->id)}}" method="post">
+                                        @csrf
+                                        @Method('GET')
+                                        <input type="hidden" name="id" value="{{$image->id}}"/>
+                                        <button type="submit" class="btn btn-sm btn-danger ml-2">Delete</button>
+                                    </form>
+                               </div>
          
 		    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
 

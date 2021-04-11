@@ -13,6 +13,7 @@ use App\Http\Livewire\CheckoutComponent;
 use App\Http\Livewire\HomeComponent;
 use App\Http\Livewire\ShopComponent;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -62,4 +63,5 @@ Route::get('/checkout',CheckoutComponent::class);
 Route::get('/cart',CartComponent::class);
 
 //For Image
-Route::get('/viewimage/{id}', [ProductController::class,'viewImage']);
+// Route::get('/viewimage/{id}', [ProductController::class,'viewImage']);
+Route::delete('/deleteimg/{id}',[ProductController::class,'destroyImg'])->name('delete');

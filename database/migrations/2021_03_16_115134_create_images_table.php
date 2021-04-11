@@ -17,7 +17,8 @@ class CreateImagesTable extends Migration
             $table->id();
             $table->string('product_id');
             $table->string('images');
-            $table->timestamps();
+            $table->foreign('images')->references('id')->on('images')->onDelete('SET NULL');
+            $table->timestamps();   
         });
     }
 
