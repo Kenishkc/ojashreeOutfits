@@ -79,9 +79,19 @@
                  </div>
             </li>
 
-            <li class="nav-item">
+        <li class="nav-item">
         <a class="nav-link" href="{{route('banner.index')}}">
         <i class="fas fa-image"></i>
         Banner</a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{route('category.index')}}">
+        <i class="fas fa-sitemap"></i>
+        Category</a>
+      </li>
+
+
+
+
 </ul>

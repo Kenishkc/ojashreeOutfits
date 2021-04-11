@@ -1,10 +1,6 @@
 @extends('admin.index')
-
-
-
 @section('content')
-
-    <div class="row">
+ <div class="row">
 
         <div class="col-lg-12 margin-tb">
 
@@ -26,25 +22,7 @@
 
 
 
-    @if ($errors->any())
 
-        <div class="alert alert-danger">
-
-            <strong>Whoops!</strong> There were some problems with your input.<br><br>
-
-            <ul>
-
-                @foreach ($errors->all() as $error)
-
-                    <li>{{ $error }}</li>
-
-                @endforeach
-
-            </ul>
-
-        </div>
-
-    @endif
 
 
 
@@ -102,15 +80,17 @@
             </div>
             </div>
 
-            <!-- <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-12">
 
-                    <div class="form-group">
+                <div class="form-group">
 
-                        <strong>Category type:</strong>
-
-                        <select class="form-control" type="drop4down"  name="cat_id" placeholder="Enter the category id"></select>
-
-            </div> -->
+                         <strong>Category type:</strong>
+                        <select class="form-control"   name="cat_id" >           
+                        @foreach ($category as $c)
+                        <option value="{{$c->id}}">{{$c->title}}</option>            
+                        @endforeach
+                        </select>
+                </div> 
 
             <div class="col-xs-12 col-sm-12 col-md-12">
 
@@ -121,6 +101,7 @@
             <input name="images[]" type="file" multiple="multiple" class="form-control" />
                             <img src="" id="previewImg" style="max-width:130px;margin-top:20px;">
                            
+
             </div>
             </div>
 
@@ -171,6 +152,15 @@
 
 
     </form>
+
+
+@endsection
+
+@section('name')
+
+
+
+
 
 
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Banner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BannerController extends Controller
 {
@@ -36,7 +37,29 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $addedby=Auth::user()->id;
+        if($request->hasFile('image'))
+        {
+         $image=$request->file('image');
+         $imageName = time().'.'.$image->getClientOriginalExtension(); 
+         $image->move(public_path('home_slider'), $imageName);
+        }else{
+             $imageName=null;
+        }
+
+       $banner=Banner::create([
+            'title'=>$request->title,
+            'offer'=>$request->offer,
+            'link'=>$request->link,
+            'image'=>$imageName,
+            'added_by'=>$addedby,
+            'description'=>$request->description,
+            'status'=>$request->status,
+       ]);
+       toastr()->success('Banner has been saved successfully!');
+       return redirect()->route('banner.index');
+      
+    
     }
 
     /**

@@ -48,6 +48,7 @@
             <th>Details</th>
             <th>Price</th>
             <th>Discounted Price</th>
+            <th>Category</th>
             <th>Short Details</th>
             <th>Manufactured Date</th>
             <th>slug</th>
@@ -65,10 +66,14 @@
 
 	        <td>{{ ++$i }}</td>
 	        <td>{{ $product->name }}</td>
+       
             <td>{{ $product->detail }}</td>
             <td>{{$product->price}}</td>
             <td>{{$product->discount_price}}</td>
-            <td>{{$product->short_detail}}</td>
+          
+            <th>{{ $product->category->title }}</th>
+
+       <td>{{$product->short_detail}}</td>
             <td>{{$product->manuf_date}}</td>
             <td>{{$product->slug}}</td>
             <td>{{$product->stock}}</td>
