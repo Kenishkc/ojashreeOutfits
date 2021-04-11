@@ -31,6 +31,11 @@ class Product extends Model
     {
         return $this->hasMany(Image::class, );
     }
+    public function previewImage()
+    {
+    return $this->hasOne(Image::class);//don't forget to import
+    }
+
 
 public function category(){
     return $this->belongsTo(Category::class,'cat_id');
