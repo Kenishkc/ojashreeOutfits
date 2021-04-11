@@ -112,9 +112,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($id)
     {
-        return view('admin.products.show',compact('product'));
+        $product = Product::findOrFail($id);
+        $images = Image::where('product_id', $id)->get();
+        return view('admin.products.show',compact('product','images'));
     }
 
     /**
@@ -164,19 +166,20 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
-    {
-        $product->delete();
-        return redirect()->route('products.index')
-                        ->with('success','Product deleted successfully');
-    
-                    }
+    public function destroyImg($id ) {
 
-                    // public function viewImage($id) {
-                    //     $products = Product::findOrFail($id);
-                    //     $images = Image::where('product_id', $id)->get();
-                    //     return view('product.viewimage',compact('products', 'images'));
+        $images = Image::findOrFail($id);
+        $images->delete();
+
+        // $images = Image::find($request->product_id)->where("id",$images->imageName);
+
+        // unlink("images/".$image->imageName);
+
+        // Image::where("product_id", $products->id)->delete();
+
+        return back()->with("success", "Image deleted successfully.");
+
+    }
                     
-                    // }
 }
     
