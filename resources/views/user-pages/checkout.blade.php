@@ -1,3 +1,8 @@
+
+@extends('user.master')
+@section('content')
+    
+
 <div>
     
   <!-- catg header banner section -->
@@ -337,3 +342,4 @@
 
 
 </div>
+@endsection

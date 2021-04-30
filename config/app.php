@@ -164,6 +164,7 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Yoeunes\Toastr\ToastrServiceProvider::class,
+        Darryldecode\Cart\CartServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -231,6 +232,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
        
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+          'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
 
     ],
 

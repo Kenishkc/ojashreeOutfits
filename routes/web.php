@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Contracts\Role;
@@ -9,6 +10,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\FacebookSocialiteController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserPageController;
 
 /*
@@ -33,7 +35,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/',[UserPageController::class,'homePage']);
-Route::get('/shop',[UserPageController::class,'shopPage']);   
+Route::get('/shop',[UserPageController::class,'shopPage']);
+
+Route::post('/search',[SearchController::class,'search'])->name('autocompleate_search');
+
+Route::get('search/image',[SearchController::class,'imageSearch']);
+      
 
 Route::get('/admin',[AdminController::class,'adminpage']);
 Route::get('/show-user',[AdminController::class,'getUsers']);
@@ -44,6 +51,16 @@ Route::get('/single/{{$id}}',[AdminController::class,'getSingleUser']);
 //login with facebook
 Route::get('auth/facebook', [FacebookSocialiteController::class, 'redirectToFB']);
 Route::get('callback/facebook', [FacebookSocialiteController::class, 'handleCallback']);
+
+//for cart
+Route::get('/cart',[CartController::class,'cart']);
+Route::get('/addcart/{id}',[CartController::class,'addToCart']);
+
+Route::post('/update-cart',[CartController::class,'updateCart'])->name('cart.update');
+Route::post('/remove-from-cart',[CartController::class,'removeCart'])->name('cart.remove');
+Route::get('/clear-cart',[CartController::class,'clearAllIteam'])->name('clear.cart');
+
+    
 
 //For Image
 Route::get('/viewimage/{id}', [ProductController::class,'viewImage']);

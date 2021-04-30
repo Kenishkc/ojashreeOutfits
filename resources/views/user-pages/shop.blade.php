@@ -66,7 +66,7 @@
                             
                     
                     </a>
-                    <a class="aa-add-card-btn"href="#">
+                    <a class="aa-add-card-btn"href="/addcart/{{$product->id}}">
                       <span class="fa fa-shopping-cart"></span>Add To Cart</a>
                     <figcaption>
                       <h4 class="aa-product-title"><a href="#">{{$product->name}}</a></h4>
@@ -77,17 +77,12 @@
                   <div class="aa-product-hvr-content">
                     <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
                     <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
-                    <a href="#" data-toggle2="tooltip"  data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>                            
+                    <a href="#" data-toggle2="tooltip"  data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal{{$product->id}}"><span class="fa fa-search"></span></a>                            
                   </div>
                   <!-- product badge -->
                   <span class="aa-badge aa-sale" href="#">SALE!</span>
                 </li>
-                <!-- start single product item -->
-              @endforeach
-                                                       
-              </ul>
-              <!-- quick view modal -->                  
-              <div class="modal fade" id="quick-view-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal fade" id="quick-view-modal{{$product->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">                      
                     <div class="modal-body">
@@ -113,7 +108,7 @@
                                   <a href="#" class="simpleLens-thumbnail-wrapper"
                                      data-lens-image="{{('images/'. $image->images)}}"
                                      data-big-image="{{('images/'. $image->images)}}" >
-                                      <img src="{{asset('images/'. $image->images)}}" width="30px;">
+                                      <img src="{{asset('images/'. $image->images)}}" width="45px;">
                                   </a>
                                  @endforeach                                     
                               </div>
@@ -130,7 +125,7 @@
                               <span class="aa-product-view-price">Rs:{{$product->price}}</span>
                               <p class="aa-product-avilability">Avilability: <span>In stock</span></p>
                             </div>
-                            <p>{{$product->description}}</p>
+                            <p>{{$product->detail}}</p>
                             <h4>Size</h4>
                             <div class="aa-prod-view-size">
                               <a href="#">S</a>
@@ -150,7 +145,7 @@
                                 </select>
                               </form>
                               <p class="aa-prod-category">
-                                Category: <a href="#">Polo T-Shirt</a>
+                                Category: <a href="#">{{ $product->category->title }}</a>
                               </p>
                             </div>
                             <div class="aa-prod-view-bottom">
@@ -164,6 +159,13 @@
                   </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
               </div>
+                <!-- start single product item -->
+              @endforeach
+                                                       
+          </ul>
+              <!-- quick view modal -->   
+                             
+              
 
               
               <!-- / quick view modal -->   

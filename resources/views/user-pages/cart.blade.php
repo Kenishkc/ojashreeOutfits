@@ -1,3 +1,6 @@
+@extends('user.master')
+
+@section('content')
 <div>
      <!-- catg header banner section -->
   <section id="aa-catg-head-banner">
@@ -23,75 +26,90 @@
        <div class="col-md-12">
          <div class="cart-view-area">
            <div class="cart-view-table">
-             <form action="">
+            
+        @if(count(\Cart::getContent()) > 0) 
+            
+           
                <div class="table-responsive">
-                  <table class="table">
+                 
+                <table class="table">
                     <thead>
                       <tr>
-                        <th></th>
-                        <th></th>
+                        <th>S.no</th>
+                        <th>Image</th>
                         <th>Product</th>
                         <th>Price</th>
                         <th>Quantity</th>
                         <th>Total</th>
+                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
+                     @foreach ($cartCollection as $item)
+                         
+                     
                       <tr>
-                        <td><a class="remove" href="#"><fa class="fa fa-close"></fa></a></td>
-                        <td><a href="#"><img src="img/man/polo-shirt-1.png" alt="img"></a></td>
-                        <td><a class="aa-cart-title" href="#">Polo T-Shirt</a></td>
-                        <td>$250</td>
-                        <td><input class="aa-cart-quantity" type="number" value="1"></td>
-                        <td>$250</td>
+                        <td>{{$loop->iteration}}</td>
+                        <td><a href="#">
+                        <img src="{{asset('images')}}/{{$item->attributes->image}}"  alt="..." width="250" height="200" class="img-responsive"/>  
+                        </a></td>
+                        <td><a class="aa-cart-title" href="#">{{$item->name}}</a></td>
+                        <td>Rs{{$item->price}}</td>
+                        
+                            <td>
+                             
+                            <form action="{{ route('cart.update') }}" method="POST">
+                              @csrf
+                          
+                               <input type="number" name="quantity"  value="{{$item->quantity}}"></td>
+                             </td>
+                            <td>Rs:{{ \Cart::get($item->id)->getPriceSum() }}</td>
+                            <td>
+                               <input type="hidden" value="{{ $item->id}}" id="id" name="id">
+              
+								                <button type ="submit" class="btn btn-info btn-sm">    
+                                    <i class="fa fa-refresh"></i>
+                                </button>
+                            </form>
+                          
+								        <form action="{{ route('cart.remove') }}" method="POST">
+                                            {{ csrf_field() }}
+                                <input type="hidden" value="{{ $item->id }}" id="id" name="id">
+                                  <button class="btn btn-danger btn-sm">
+                                  <i class="fa fa-trash-o"></i></button>								
+							            </form>
+                          
+
+                       </td>
                       </tr>
-                      <tr>
-                        <td><a class="remove" href="#"><fa class="fa fa-close"></fa></a></td>
-                        <td><a href="#"><img src="img/man/polo-shirt-2.png" alt="img"></a></td>
-                        <td><a class="aa-cart-title" href="#">Polo T-Shirt</a></td>
-                        <td>$150</td>
-                        <td><input class="aa-cart-quantity" type="number" value="1"></td>
-                        <td>$150</td>
-                      </tr>
-                      <tr>
-                        <td><a class="remove" href="#"><fa class="fa fa-close"></fa></a></td>
-                        <td><a href="#"><img src="img/man/polo-shirt-3.png" alt="img"></a></td>
-                        <td><a class="aa-cart-title" href="#">Polo T-Shirt</a></td>
-                        <td>$50</td>
-                        <td><input class="aa-cart-quantity" type="number" value="1"></td>
-                        <td>$50</td>
-                      </tr>
-                      <tr>
-                        <td colspan="6" class="aa-cart-view-bottom">
-                          <div class="aa-cart-coupon">
-                            <input class="aa-coupon-code" type="text" placeholder="Coupon">
-                            <input class="aa-cart-view-btn" type="submit" value="Apply Coupon">
-                          </div>
-                          <input class="aa-cart-view-btn" type="submit" value="Update Cart">
-                        </td>
-                      </tr>
-                      </tbody>
+
+                     @endforeach
+                     
+                        </tbody>
                   </table>
                 </div>
-             </form>
+             <a href="{{route('clear.cart')}}" class="aa-cart-view-btn ">Clear Cart</a>
+           
              <!-- Cart Total view -->
              <div class="cart-view-total">
                <h4>Cart Totals</h4>
+                  
                <table class="aa-totals-table">
                  <tbody>
-                   <tr>
-                     <th>Subtotal</th>
-                     <td>$450</td>
-                   </tr>
+                  
                    <tr>
                      <th>Total</th>
-                     <td>$450</td>
+                     <td>Rs{{ \Cart::getTotal() }}</td>
                    </tr>
                  </tbody>
                </table>
                <a href="#" class="aa-cart-view-btn">Proced to Checkout</a>
-             </div>
-           </div>
+            
+              </div>
+           @else
+            <p class="text-secondary text-center">Please Add Some Product in the Cart </p>
+          @endif
+          </div>
          </div>
        </div>
      </div>
@@ -123,3 +141,5 @@
 
 
 </div>
+
+@endsection

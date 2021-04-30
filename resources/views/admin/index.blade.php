@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <title>Dashboard</title>
 
@@ -21,9 +22,13 @@
   <link href="{{ asset('css/custome.css')}}" rel="stylesheet">
    <!-- css of  DataTAble -->
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha256-IdfIcUlaMBNtk4Hjt0Y6WMMZyMU0P9PN/pH+DFzKxbI=" crossorigin="anonymous" />
 
   {{-- <link href="{{asset('css/fresh-bootstrap-table.css')}}" rel="stylesheet" /> --}}
-
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  @include('admin.partials.css')
+  
   <!-- Fonts and icons -->
   <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet">
   <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300" rel="stylesheet" type="text/css">

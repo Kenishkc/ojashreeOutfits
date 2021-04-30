@@ -201,5 +201,61 @@ function handeldelete(id){
 
     
   </script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
- 
+    <script type="text/javascript">
+
+    // CSRF Token
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    $(document).ready(function(){
+
+      $( "#product_search" ).autocomplete({
+        source: function( request, response ) {
+          // Fetch data
+          $.ajax({
+            url:"{{route('autocompleate_search')}}",
+            type: 'post',
+            dataType: "json",
+            data: {
+               _token: CSRF_TOKEN,
+               search: request.term
+            },
+            success: function( data ) {
+               response( data );
+            }
+          });
+        },
+        select: function (event, ui) {
+           $('#product_search').val(ui.item.label);
+           
+           $('#productid').val(ui.item.value); 
+           return false;
+        }
+        
+      });
+
+    });
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+    $("#search").autocomplete({
+        source: "{{ url('search/image') }}",
+            focus: function( event, ui ) {
+            //$( "#search" ).val( ui.item.title ); // uncomment this line if you want to select value to search box  
+            return false;
+        },
+        select: function( event, ui ) {
+            window.location.href = ui.item.url;
+        }
+    }).data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+        var inner_html = '<a href="' + item.url + '" >
+        <div class="list_item_container">
+        <div class="image"><img src="' + item.image + '" ></div>
+        <div class="label"><h4><b>' + item.title + '</b></h4></div></div></a>';
+        return $( "<li></li>" )
+                .data( "item.autocomplete", item )
+                .append(inner_html)
+                .appendTo( ul );
+    };
+});
+</script>
