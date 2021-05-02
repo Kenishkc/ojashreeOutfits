@@ -13,6 +13,7 @@ use App\Http\Controllers\FacebookSocialiteController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserPageController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -74,4 +75,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('category',CategoryController::class);
 
 });
+
+
+//For Image
+// Route::get('/viewimage/{id}', [ProductController::class,'viewImage']);
+Route::delete('/deleteimg/{id}',[ProductController::class,'destroyImg'])->name('delete');
 
