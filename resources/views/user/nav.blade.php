@@ -1,5 +1,6 @@
 
- <header id="aa-header">
+
+  <header id="aa-header">
     <!-- start header top  -->
     <div class="aa-header-top">
       <div class="container">
@@ -43,7 +44,7 @@
                 </div>
                 <!-- / cellphone -->
               </div>
-              <!-- / header top left -->
+            <!-- / header top left -->
               <div class="aa-header-top-right">
                 <ul class="aa-head-top-nav-right">
                   <li><a href="account.html">My Account</a></li>
@@ -66,6 +67,55 @@
         <div class="row">
           <div class="col-md-12">
             <div class="aa-header-bottom-area">
+             
+              <div class="aa-cartbox">
+                <a class="aa-cart-link" href="/profile">
+                  <span class="fa fa-user"></span>
+               <span class="aa-cart-title text-uppercase">
+                 
+              @if (auth()->guest())
+              Guest
+              @else
+                {{(Auth::user()->name)}}
+              @endif
+              </span>
+                  
+                </a>
+                    
+                
+                <div class="aa-cartbox-summary">
+                  
+                 @if (auth()->guest())
+                 <p>You are Guest 
+                   Please Login !</p>
+                  @else
+                   <ul>
+                      <li>
+                        <a href="/profile">
+                        <span>Profile</span></a>
+                      </li>
+
+                     <li>
+                     <a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                      
+                      </li>
+                    </ul>
+                 @endif
+                
+                 </div>
+              
+               </div>
+          
+                
+              
               <!-- logo  -->
               <div class="aa-logo">
                 <!-- Text based logo -->
@@ -77,23 +127,32 @@
                 <!-- <a href="index.html"><img src="img/logo.jpg" alt="logo img"></a> -->
               </div>
               <!-- / logo  -->
+             
                <!-- cart box -->
-              <div class="aa-cartbox">
+       
+               <div class="aa-cartbox">
                 <a class="aa-cart-link" href="/cart">
                   <span class="fa fa-shopping-basket"></span>
                   <span class="aa-cart-title">SHOPPING CART</span>
-                  <span class="aa-cart-notify">{{\Cart::session(Auth::user()->id)->getContent()->count()}}</span>
+                  <span class="aa-cart-notify">
+                   @if (auth()->guest())
+                   0
+                   @else
+                    {{\Cart::session(Auth::user()->id)->getContent()->count()}} 
+                    @endif
+                  </span>
+                 
                 </a>
                     
-                
+                @auth
                 <div class="aa-cartbox-summary">
-               
-               @if(count(\Cart::session(Auth::user()->id)->getContent()) > 0)
+              
+                  @if(count(\Cart::session(Auth::user()->id)->getContent()) > 0)
                   <ul>
                       @foreach (\Cart::session(Auth::user()->id)->getContent() as $item)
               
                     <li>
-                      <a class="aa-cartbox-img" href="#"><img src="{{asset('images')}}/{{$item->attributes->image}}"></a>
+                      <a cxlass="aa-cartbox-img" href="#"><img src="{{asset('images')}}/{{$item->attributes->image}}" style="max-height: 100px;" ></a>
                       <div class="aa-cartbox-info">
                         <h4><a href="#">{{$item->name}}</a></h4>
                         <p>Rs{{$item->price}} *{{$item->quantity}}</p>
@@ -122,11 +181,17 @@
                  
                   <a class="aa-cartbox-checkout aa-primary-btn" href="/checkout">Checkout</a>
                 @else
-                <p>Your Cart is empty</p>
+                 <p>Your Cart is empty</p>
                 @endif
                 </div>
-               
-              </div>
+                @endauth
+
+                </div>
+              
+
+
+                
+              
               <!-- / cart box -->
               <!-- search box -->
               <div class="aa-search-box">
@@ -135,9 +200,11 @@
                   <button type="submit"><span class="fa fa-search"></span></button>
                 </form>
               </div>
-              <!-- / search box -->             
-            </div>
+              <!-- / search box -->   
+                    
+           
           </div>
+          
         </div>
       </div>
     </div>

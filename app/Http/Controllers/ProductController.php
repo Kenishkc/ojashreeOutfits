@@ -119,6 +119,15 @@ class ProductController extends Controller
         return view('admin.products.show',compact('product','images'));
     }
 
+    public function productDetail($id){
+
+        $product=Product::where('id',$id)->first();
+        return view('user-pages.product-details',compact('product'));
+
+
+    }
+
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -172,7 +181,6 @@ class ProductController extends Controller
         $images->delete();
 
         // $images = Image::find($request->product_id)->where("id",$images->imageName);
-
         // unlink("images/".$image->imageName);
 
         // Image::where("product_id", $products->id)->delete();
@@ -180,6 +188,6 @@ class ProductController extends Controller
         return back()->with("success", "Image deleted successfully.");
 
     }
-                    
+
 }
     

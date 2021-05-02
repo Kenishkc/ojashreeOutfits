@@ -64,7 +64,7 @@ Route::get('/clear-cart',[CartController::class,'clearAllIteam'])->name('clear.c
     
 
 //For Image
-Route::get('/viewimage/{id}', [ProductController::class,'viewImage']);
+Route::get('/product-details/{id}', [ProductController::class,'productDetail']);
 
 Route::group(['middleware' => ['auth']], function() {
 

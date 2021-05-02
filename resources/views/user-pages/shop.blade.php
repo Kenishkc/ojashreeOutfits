@@ -58,7 +58,7 @@
                
                 <li>
                   <figure>
-                    <a class="aa-product-img" href="#">
+                    <a class="aa-product-img" href="/product-details/{{$product->id}}">
                            
                             <img  
                             src="{{asset('images/'. $product->previewImage->images)}}" alt="" width="250" height="300">
@@ -106,8 +106,8 @@
                               <div class="simpleLens-thumbnails-container">
                                 @foreach ($product->images as $image)
                                   <a href="#" class="simpleLens-thumbnail-wrapper"
-                                     data-lens-image="{{('images/'. $image->images)}}"
-                                     data-big-image="{{('images/'. $image->images)}}" >
+                                     data-lens-image="{{asset('images/'. $image->images)}}"
+                                     data-big-image="{{asset('images/'. $image->images)}}" >
                                       <img src="{{asset('images/'. $image->images)}}" width="45px;">
                                   </a>
                                  @endforeach                                     
