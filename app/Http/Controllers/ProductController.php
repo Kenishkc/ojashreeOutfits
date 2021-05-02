@@ -117,6 +117,15 @@ class ProductController extends Controller
         return view('admin.products.show',compact('product'));
     }
 
+    public function productDetail($id){
+
+        $product=Product::where('id',$id)->first();
+        return view('user-pages.product-details',compact('product'));
+
+
+    }
+
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -172,11 +181,9 @@ class ProductController extends Controller
     
                     }
 
-                    // public function viewImage($id) {
-                    //     $products = Product::findOrFail($id);
-                    //     $images = Image::where('product_id', $id)->get();
-                    //     return view('product.viewimage',compact('products', 'images'));
+
+
                     
-                    // }
+
 }
     
