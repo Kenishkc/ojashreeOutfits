@@ -12,6 +12,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\FacebookSocialiteController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserPageController;
+use App\Http\Controllers\OrderController;
 
 
 /*
@@ -73,6 +74,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('products',ProductController::class);
     Route::resource('banner', BannerController::class);
     Route::resource('category',CategoryController::class);
+    Route::resource('order',OrderController::class);
 
 });
 
