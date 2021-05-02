@@ -61,7 +61,7 @@
                     <a class="aa-product-img" href="#">
                            
                             <img  
-                            src="{{asset('images/'. $product->previewImage->images)}}" alt="" width="250" height="300">
+                            src="{{asset('images/'.$product->previewImage->images)}}" alt="" width="250" height="300">
                      
                             
                     
