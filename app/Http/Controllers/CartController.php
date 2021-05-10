@@ -59,9 +59,9 @@ public function addToCart($id){
         
         ));
    
-   toastr()->success('Item is Added to Cart!');
-       
-return back();
+            toastr()->success('Item is Added to Cart!');
+                
+            return back();
 }
 
  public function removeCart(Request $request){

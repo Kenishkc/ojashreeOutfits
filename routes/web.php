@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
 use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Contracts\Role;
 use App\Http\Controllers\RoleController;
@@ -60,6 +61,12 @@ Route::post('/update-cart',[CartController::class,'updateCart'])->name('cart.upd
 Route::post('/remove-from-cart',[CartController::class,'removeCart'])->name('cart.remove');
 Route::get('/clear-cart',[CartController::class,'clearAllIteam'])->name('clear.cart');
 
+
+//for checkout
+Route::get('/checkout',[UserPageController::class,'checkout']);
+
+//for userProfile
+Route::get('/profile',[UserPageController::class,'profile']);
     
 
 //For Image

@@ -60,7 +60,7 @@
                       </div>
                       <div id="collapseTwo" class="panel-collapse collapse">
                         <div class="panel-body">
-                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat voluptatibus modi pariatur qui reprehenderit asperiores fugiat deleniti praesentium enim incidunt.</p>
+                          <p>Please Login to Our Site</p>
                           <input type="text" placeholder="Username or email">
                           <input type="password" placeholder="Password">
                           <button type="submit" class="aa-browse-btn">Login</button>
@@ -292,6 +292,7 @@
                           <th>Total</th>
                         </tr>
                       </thead>
+                      
                       <tbody>
                         <tr>
                           <td>T-Shirt <strong> x  1</strong></td>
