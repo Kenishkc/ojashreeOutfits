@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Order;
-use App\Models\Product;
-use App\Models\User;
+use App\Models\Order_items;
+use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
@@ -16,8 +15,10 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $order = Order::all();
-        return view('/',compact('order'));
+
+       $order=Order::all();
+       return view('admin.order.index',compact('order'));
+
     }
 
     /**
@@ -27,10 +28,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        $products=Product::get();
-        $users=User::all();
-        $cart=Cart::get();
-        return view('/',compact('products','users','cart'));
+      
     }
 
     /**
@@ -41,19 +39,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $user_id=Auth::id();
-        $order =new Order();
-        $order->user_id=$user_id;
-        $order->cart=$request->cart;
-        $order->product_id=$request->product_id;
-        $order->quantity=$request->quantity;
-        $order->price=$request->price;
-        $order->details=$request->details;
-        $order->save();
 
-        return redirect()
-        ->route('/')
-        ->with('success','Your Order is Placed.');
     }
 
     /**
@@ -64,8 +50,8 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        $order=Order::where('id',$id)->first();
-    return view('/',compact('order'));
+        $order=Order::findOrFail($id);
+        return view('admin.order.show',compact('order'));
 
     }
 
@@ -77,7 +63,7 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -89,7 +75,7 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**

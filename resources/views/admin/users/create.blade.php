@@ -1,5 +1,65 @@
 @extends('admin.index')
 @section('content')
+<section style="padding-top:60px;">
+    <div class="container">
+        <div class="col-md-8 offset-md-1">
+            <div class="card p-2">
+              <div class="card-header text-white text-bold bg-secondary">
+               Add New User
+               </div>
+               <div class="card-body">
+                        <form method="POST"  action="{{route('users.store')}}" enctype="multipart/form-data">
+                         @method('POST')
+                        @csrf
+                        <div class="form-group">
+                             <label for ="Name">Name:</label>
+                             <input required="" type="text" name="name" class="form-control" placeholder="Enter User Name"/>                            
+                               @error('name')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                           </div>
+                           <div class="form-group">
+                             <label for ="email">Email</label>
+                             <input required="" type="email" name="email" class="form-control" placeholder="Enter Email address"/>                            
+                               @error('email')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                           </div> 
+                           
+                           
+                            <div class="form-group">
+                             <label for ="Password">Password</label>
+                             <input required="" type="Password" name="password" class="form-control" placeholder="Enter Password"/>                            
+                               @error('Password')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                           </div>     
+                           
+                            <div class="form-group">
+                             <label for ="confirm-password">Confirm Password</label>
+                             <input required="" type="Password" name="confirm-password" class="form-control" placeholder="Confirm Password"/>                            
+                               @error('confirm-password')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                           </div>   
+                           
+                            <button type="submit" class="btn btn-success" >Add User</button>
+                            <a href="{{ route('users.index') }}" class="btn btn-danger mr-1 float-right"><i class="fas fa-undo"></i> Back </a>
+                                                
+
+                           </div>
+                         </div>
+                       </form>
+                    </div>
+             </div>
+        </div>
+    </div>
+</section>    
+
+
+
+
+
 <div class="row">
 
     <div class="col-lg-12 margin-tb">

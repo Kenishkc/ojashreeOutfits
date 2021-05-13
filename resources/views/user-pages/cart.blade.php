@@ -103,7 +103,7 @@
                    </tr>
                  </tbody>
                </table>
-               <a href="#" class="aa-cart-view-btn">Proced to Checkout</a>
+               <a href="{{route('checkout.index')}}" class="aa-cart-view-btn">Proced to Checkout</a>
             
               </div>
            @else

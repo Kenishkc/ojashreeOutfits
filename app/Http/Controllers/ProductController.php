@@ -60,12 +60,9 @@ class ProductController extends Controller
             'manuf_date'=>'required',
             'discount_price'=>'required',
             'short_detail'=>'required',
-            'stock'=>'required',
-
-        
-            
-            
+            'stock'=>'required',         
         ]);
+        
         $products = new Product();
         $products->name=$request->name;
         $name = $request->name;
@@ -74,7 +71,7 @@ class ProductController extends Controller
         $url=strtolower(trim($url));
         $url=str_replace(" ","-",$url);
 
-        $products->price=$request->price;
+         $products->price=$request->price;
         $products->manuf_date=$request->manuf_date; 
         $products->discount_price=$request->discount_price;
         $products->detail=$request->detail;

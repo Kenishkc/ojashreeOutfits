@@ -63,8 +63,7 @@
         <div class="container-fluid">
 
            <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-center text-gray-800">Wellcome to Dashbord</h1>
-          @yield('content')
+            @yield('content')
 
        </div>
           <!-- /.container-fluid -->

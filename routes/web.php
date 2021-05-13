@@ -4,12 +4,14 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
 use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Contracts\Role;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\FacebookSocialiteController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserPageController;
 use App\Http\Controllers\OrderController;
@@ -36,7 +38,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Auth::routes();
 
-Route::get('/',[UserPageController::class,'homePage']);
+Route::get('/',[UserPageController::class,'homePage'])->name('userhome');
 Route::get('/shop',[UserPageController::class,'shopPage']);
 
 Route::post('/search',[SearchController::class,'search'])->name('autocompleate_search');
@@ -62,6 +64,12 @@ Route::post('/update-cart',[CartController::class,'updateCart'])->name('cart.upd
 Route::post('/remove-from-cart',[CartController::class,'removeCart'])->name('cart.remove');
 Route::get('/clear-cart',[CartController::class,'clearAllIteam'])->name('clear.cart');
 
+
+//for checkout
+Route::get('/checkout',[UserPageController::class,'checkout']);
+
+//for userProfile
+Route::get('/profile',[UserPageController::class,'profile']);
     
 
 //For Image
@@ -74,7 +82,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('products',ProductController::class);
     Route::resource('banner', BannerController::class);
     Route::resource('category',CategoryController::class);
-    Route::resource('order',OrderController::class);
+
+    Route::resource('checkout',CheckoutController::class);
+    Route::resource('order', OrderController::class);
 
 });
 
