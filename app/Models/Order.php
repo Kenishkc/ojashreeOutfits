@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'user_id',
         'payment_id',
@@ -27,5 +28,6 @@ public function shippingaddress(){
     return $this->hasOne(Shipping_addresses::class);
 
 }
+
 
 }

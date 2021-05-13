@@ -14,6 +14,8 @@ use App\Http\Controllers\FacebookSocialiteController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserPageController;
+use App\Http\Controllers\OrderController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -80,8 +82,14 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('products',ProductController::class);
     Route::resource('banner', BannerController::class);
     Route::resource('category',CategoryController::class);
+
     Route::resource('checkout',CheckoutController::class);
     Route::resource('order', OrderController::class);
 
 });
+
+
+//For Image
+// Route::get('/viewimage/{id}', [ProductController::class,'viewImage']);
+Route::delete('/deleteimg/{id}',[ProductController::class,'destroyImg'])->name('delete');
 
