@@ -179,7 +179,7 @@
                     </li>
                   </ul>
                  
-                  <a class="aa-cartbox-checkout aa-primary-btn" href="/checkout">Checkout</a>
+                  <a class="aa-cartbox-checkout aa-primary-btn" href="{{route('checkout.index')}}">Checkout</a>
                 @else
                  <p>Your Cart is empty</p>
                 @endif

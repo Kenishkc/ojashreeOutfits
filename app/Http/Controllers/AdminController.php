@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -17,7 +18,9 @@ public function adminpage(){
 
 public function addUsers(){
   
-    return view('admin.add-users');
+
+      $roles = Role::pluck('name','name')->all();
+    return view('admin.users.create',compact('roles'));
 
 }
 

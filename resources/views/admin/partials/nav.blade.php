@@ -91,6 +91,11 @@
         Category</a>
       </li>
 
+      <li class="nav-item">
+        <a class="nav-link" href="{{route('order.index')}}">
+        <i class="fas fa-shopping-cart"></i>
+        Order</a>
+      </li>
 
 
 

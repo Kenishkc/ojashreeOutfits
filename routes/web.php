@@ -11,6 +11,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\FacebookSocialiteController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserPageController;
 
@@ -35,7 +36,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Auth::routes();
 
-Route::get('/',[UserPageController::class,'homePage']);
+Route::get('/',[UserPageController::class,'homePage'])->name('userhome');
 Route::get('/shop',[UserPageController::class,'shopPage']);
 
 Route::post('/search',[SearchController::class,'search'])->name('autocompleate_search');
@@ -79,6 +80,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('products',ProductController::class);
     Route::resource('banner', BannerController::class);
     Route::resource('category',CategoryController::class);
+    Route::resource('checkout',CheckoutController::class);
+    Route::resource('order', OrderController::class);
 
 });
 
