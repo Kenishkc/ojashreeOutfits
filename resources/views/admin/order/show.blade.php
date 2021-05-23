@@ -69,21 +69,24 @@
                       <tfoot>
                         <tr>
                           <th >Subtotal</th>
-                          <td>Rs:</td>
+                          <td>Rs:{{$item->subtotal}}</td>
                         </tr>
                        
                          <tr>
                           <th>Total</th>
-                          <td>Rs</td>
+                          <td>Rs{{$item->total}}</td>
                         </tr>
                       </tfoot>
                     </table>
-                    <form method="POST" action="{{route('order.store')}}" >                           
-                            @csrf
-    
+                    <form method="POST" action="{{route('order.update',$order->id)}}" >                           
+                      @method('PUT')      
+                      @csrf
+                           
                               <div class="form-group">
                                 
-                                    <label for ="status" style="color:red;"><strong>Order Status</strong></label>
+                                    <label for ="status" style="color:red;">
+                                      <strong>Order Status</strong>
+                                    </label>
                                       <select type="dropdown" class="form-control" name="status">
                                           <option value="accept">Accept</option>
                                           <option value="cancel">Cancel</option>

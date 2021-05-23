@@ -121,7 +121,7 @@
                 <!-- Text based logo -->
                 <a href="/">
                   <span class="fa fa-shopping-cart"></span>
-                  <p>daily<strong>Shop</strong> <span>Your Shopping Partner</span></p>
+                  <p>OjasShre<strong>Outfits</strong> <span>Your Shopping Partner</span></p>
                 </a>
                 <!-- img based logo -->
                 <!-- <a href="index.html"><img src="img/logo.jpg" alt="logo img"></a> -->

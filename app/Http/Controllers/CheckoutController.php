@@ -63,10 +63,14 @@ class CheckoutController extends Controller
                 $order_item->price=$cart->price;
                 $order_item->quantity=$cart->quantity;
                 $order_item->amount= \Cart::get($cart->id)->getPriceSum() ;
+                $order_item->subtotal=\Cart::session($userId)->getSubTotal();
+                $order_item->total=\Cart::session($userId)->getTotal();
                 $order_item->save();
 
             }
-       }
+               
+       
+        }
         $request->merge([
             'user_id'=>$userId,
             'order_id'=>$order->id

@@ -20,6 +20,8 @@ class CreateOrderItemsTable extends Migration
             $table->string('quantity');
             $table->string('price');
             $table->string('amount');
+            $table->string('subtotal');
+            $table->string('total');
             $table->timestamps();
         });
     }
