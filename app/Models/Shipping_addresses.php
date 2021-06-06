@@ -15,6 +15,7 @@ class Shipping_addresses extends Model
     'phone',
     'address',
     'city',
+    'appartment',
     'country',
     'district',
     'special_note',

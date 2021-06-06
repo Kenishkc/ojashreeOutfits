@@ -12,6 +12,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\FacebookSocialiteController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserPageController;
 
@@ -66,8 +67,6 @@ Route::get('/clear-cart',[CartController::class,'clearAllIteam'])->name('clear.c
 //for checkout
 Route::get('/checkout',[UserPageController::class,'checkout']);
 
-//for userProfile
-Route::get('/profile',[UserPageController::class,'profile']);
     
 
 //For Image
@@ -82,6 +81,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('category',CategoryController::class);
     Route::resource('checkout',CheckoutController::class);
     Route::resource('order', OrderController::class);
+    Route::resource('profile', ProfileController::class);
 
 });
 

@@ -42,7 +42,9 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link"  style="cursor: pointer" 
+                                    data-toggle="modal" data-target="#login-modal" >
+                                    {{ __('Login') }}</a>
                                 </li>
                             @endif
                             

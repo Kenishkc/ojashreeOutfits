@@ -13,11 +13,6 @@ class CartController extends Controller
 {
     
     //for carts only...........................................................................................
- function __construct()
-    {
-        
-         $this->middleware('auth');
-    }
 
 
 

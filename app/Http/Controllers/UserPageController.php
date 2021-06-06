@@ -26,8 +26,5 @@ public function checkout(){
     return view('user-pages.checkout');
 }
 
-public function profile(){
-    return view('user-pages.profile');
-}
 
 }

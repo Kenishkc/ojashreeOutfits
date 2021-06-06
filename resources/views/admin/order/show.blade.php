@@ -12,7 +12,7 @@
                     
               <div class="col-md-4" style=" text-align:left;">
                      
-                        <h4 class="ml-2" style="color:red;">Customer Details</h4>
+                      <h4 class="ml-2" style="color:red;">Customer Details</h4>
                     
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item"><b>Name: </b>{{$order->user->name}}</li>
@@ -93,15 +93,11 @@
                                           <option value="pending">Pending</option>
                                           <option value="complete">Complete</option>
                                           
-                                      </select> 
-                                
+                                      </select>                                
                               </div>
-                              <div class="form-group">
-                              
+                              <div class="form-group">                              
                                 <button type="submit" class="btn btn-success" >Sumbit </button>
                             </div>
-                    
-
 
                      </form>       
                   

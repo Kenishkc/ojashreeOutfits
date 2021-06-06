@@ -36,17 +36,17 @@
                     <div id="demo-1" class="simpleLens-gallery-container">
                       <div class="simpleLens-container">
                         <div class="simpleLens-big-image-container">
-                                <a data-lens-image="{{"/images/"   .$product->previewImage->images}}" class="simpleLens-lens-image">
-                            <img src="{{"/images/"   .$product->previewImage->images}}" class="simpleLens-big-image">
+                                <a data-lens-image="{{"/images/large/"   .$product->previewImage->images}}" class="simpleLens-lens-image">
+                            <img src="{{"/images/medium/"   .$product->previewImage->images}}" class="simpleLens-big-image">
                              </a>
                             </div>
                       </div>
                       <div class="simpleLens-thumbnails-container">
                           @foreach ($product->images as $image)
-                          <a data-big-image="{{asset('images/'. $image->images)}}"
-                           data-lens-image="{{asset('images/'. $image->images)}}" 
+                          <a data-big-image="{{asset('images/medium/'. $image->images)}}"
+                           data-lens-image="{{asset('images/large/'. $image->images)}}" 
                            class="simpleLens-thumbnail-wrapper" href="#">
-                            <img src="{{asset('images/'. $image->images)}}" width="45px;" >
+                            <img src="{{asset('images/thumbnail/'. $image->images)}}" width="45px;" >
                           </a>
                           @endforeach                                    
                          

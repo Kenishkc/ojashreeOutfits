@@ -106,7 +106,7 @@
                           <div class="row">
                             <div class="col-md-12">
                               <div class="aa-checkout-single-bill">
-                                <textarea cols="8" required rows="3">Address*</textarea>
+                                <input type="text" name="address" placeholder="Enter Valid Address*">
                               </div>                             
                             </div>                            
                           </div>   
@@ -124,19 +124,19 @@
                           <div class="row">
                             <div class="col-md-6">
                               <div class="aa-checkout-single-bill">
-                                <input type="text" placeholder="Appartment, Suite etc.">
+                                <input type="text" name="appartment" required placeholder="Appartment,Tole etc.">
                               </div>                             
                             </div>
                             <div class="col-md-6">
                               <div class="aa-checkout-single-bill">
-                                <input type="text" name="city" placeholder="City / Town*">
+                                <input type="text" name="city" required placeholder="City / Town*">
                               </div>
                             </div>
                           </div>   
                           <div class="row">
                             <div class="col-md-12">
                               <div class="aa-checkout-single-bill">
-                                <input type="text" name="district" placeholder="District*">
+                                <input type="text" name="district" required placeholder="District*">
                               </div>                             
                             </div>
                        
@@ -194,12 +194,18 @@
                     </table>
                   </div>
                   <h4>Payment Method</h4>
-                  <div class="aa-payment-method">                    
-                    <label for="cashdelivery"><input type="radio" id="cashdelivery" name="optionsRadios"> Cash on Delivery </label>
-                    <label for="paypal"><input type="radio" id="paypal" name="optionsRadios" checked> Via Paypal </label>
+                  <div class="aa-payment-method"  >                    
+                    <label for="cashdelivery">
+                      <input type="radio"  value="cash" required name="payment_id"> Cash on Delivery
+                   </label>
+                    <label for="paypal">
+                      <input type="radio"  value="payal" name="payment_id"> Via Paypal 
+                    </label>
+                  </br>
                     <img src="https://www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg" border="0" alt="PayPal Acceptance Mark">    
-                    <input type="submit" value="Place Order" class="aa-browse-btn">                
-                  </div>
+                   </div>
+                      <input type="submit" value="Place Order" class="aa-browse-btn">                
+                
                 </div>
               </div>
             </div>

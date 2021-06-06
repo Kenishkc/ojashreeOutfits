@@ -60,14 +60,19 @@
                   <figure>
                     <a class="aa-product-img" href="/product-details/{{$product->id}}">
                            
-                            <img  
-                            src="{{asset('images/'. $product->previewImage->images)}}" alt="" width="250" height="300">
+                     <img src="{{asset('images/large/'. $product->previewImage->images)}}"
+                      alt="" width="250" height="300">
                      
                             
                     
                     </a>
+                    @if (Auth::user())
                     <a class="aa-add-card-btn"href="/addcart/{{$product->id}}">
                       <span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                     @else 
+                    <a class="aa-add-card-btn" href="" data-toggle="modal" data-target="#login-modal">
+                              <span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                    @endif  
                     <figcaption>
                       <h4 class="aa-product-title"><a href="#">{{$product->name}}</a></h4>
                       <span class="aa-product-price">Rs{{$product->price}}</span><span class="aa-product-price"><del>Rs:{{$product->discount_price}}</del></span>
@@ -75,13 +80,20 @@
                     </figcaption>
                   </figure>                         
                   <div class="aa-product-hvr-content">
-                    <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
-                    <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
+                    <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fas fa-heart"></span></a>
+                    <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange-alt"></span></a>
                     <a href="#" data-toggle2="tooltip"  data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal{{$product->id}}"><span class="fa fa-search"></span></a>                            
                   </div>
+
                   <!-- product badge -->
                   <span class="aa-badge aa-sale" href="#">SALE!</span>
                 </li>
+
+
+
+
+
+
                 <div class="modal fade" id="quick-view-modal{{$product->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">                      
@@ -95,10 +107,10 @@
                               <div class="simpleLens-container">
                                 
                                   <div class="simpleLens-big-image-container">
-                                      <a class="simpleLens-lens-image" data-lens-image="{{asset('images/'. $product->previewImage->images)}}">
+                                      <a class="simpleLens-lens-image" data-lens-image="{{asset('images/large/'. $product->previewImage->images)}}">
                                       
                                         
-                                        <img src="{{asset('images/'. $product->previewImage->images)}}" height="300px;" width="250px;" class="simpleLens-big-image">
+                                        <img src="{{asset('images/large/'. $product->previewImage->images)}}" height="300px;" width="250px;" class="simpleLens-big-image">
                                       </a>
                                   </div>
                               </div>
@@ -106,9 +118,9 @@
                               <div class="simpleLens-thumbnails-container">
                                 @foreach ($product->images as $image)
                                   <a href="#" class="simpleLens-thumbnail-wrapper"
-                                     data-lens-image="{{asset('images/'. $image->images)}}"
-                                     data-big-image="{{asset('images/'. $image->images)}}" >
-                                      <img src="{{asset('images/'. $image->images)}}" width="45px;">
+                                     data-lens-image="{{asset('images/large/'. $image->images)}}"
+                                     data-big-image="{{asset('images/medium/'. $image->images)}}" >
+                                      <img src="{{asset('images/thumbnail/'. $image->images)}}" width="45px;">
                                   </a>
                                  @endforeach                                     
                               </div>
@@ -116,7 +128,6 @@
                           </div>
                         </div>
                         <!-- Modal view content -->
-                     
                      
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <div class="aa-product-view-content">
