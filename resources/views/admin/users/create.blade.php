@@ -26,7 +26,7 @@
 <section style="padding-top:60px;">
     <div class="container">
         <div class="col-md-8 offset-md-1">
-            <div class="card p-2">
+            <div class="card p-2  mb-5">
               <div class="card-header text-white text-bold bg-secondary">
                Add New User
                </div>

@@ -166,8 +166,9 @@
                <!-- / cart box -->
                <!-- search box -->
                <div class="aa-search-box">
-                  <form action="">
-                     <input type="text" name="" id="" placeholder="Search here ex. 'man' ">
+                  <form action="/searching" id="search_form" method="POST">
+                     @csrf
+                     <input type="text" name="product_items" id="search_text" placeholder="Search here ex. 'man' ">
                      <button type="submit"><span class="fa fa-search"></span></button>
                   </form>
                </div>

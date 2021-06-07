@@ -26,5 +26,22 @@ public function checkout(){
     return view('user-pages.checkout');
 }
 
+public function searchProduct(Request $request){
+    $query=$request->get('term','');
+    $products=Product::where('name','LIKE','%'.$query.'%')->get();
+    $data=[];
+    foreach($products as $items){
+        $data[] =[
+            'value'=>$items->name,
+            'id'=>$items->id,
+        ];
+    }
+    if(count($data)){
+        return $data;
+    }else{
+        return ['value'=>'No Result Found','id'=>''];
+    }
+}
+
 
 }

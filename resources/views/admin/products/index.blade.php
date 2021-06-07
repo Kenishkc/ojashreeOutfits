@@ -1,30 +1,6 @@
 @extends('admin.index')
 @section('content')
 
-    <div class="row">
-
-        <div class="col-lg-12 margin-tb">
-
-            <div class="pull-left">
-
-                <h2>Products</h2>
-
-            </div>
-
-            <div class="pull-right">
-
-                @can('product-create')
-
-                <a class="btn btn-success" href="{{ route('products.create') }}"> Create New Product</a>
-
-                @endcan
-
-            </div>
-
-        </div>
-
-    </div>
-
     @if ($message = Session::get('success'))
 
         <div class="alert alert-success">
@@ -36,82 +12,92 @@
     @endif
 
 
+<section style="padding-top:60px;">
+   <div class="container">
+      <div class="col-md-12">
+         <div class="card p-2">
+            <div class="card-body">
+ 
+                <table class="table table-striped" style="width:100%" id="datatable">
+                <thead class="thead-dark" >
+                     <tr>
 
-    <table class="table table-bordered">
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Discounted Price</th>
+                        <th>Category</th>
+                      
+                        <th>stock</th>
 
-        <tr>
+                        
 
-            <th>No</th>
-            <th>Name</th>
-            <th>Details</th>
-            <th>Price</th>
-            <th>Discounted Price</th>
-            <th>Category</th>
-            <th>Short Details</th>
-            <th>Manufactured Date</th>
-            <th>slug</th>
-            <th>status</th>
+                        <th width="280px">Action</th>
 
-            
-
-            <th width="280px">Action</th>
-
-        </tr>
-
-	    @foreach ($products as $product)
-
-	    <tr>
-
-	        <td>{{ ++$i }}</td>
-	        <td>{{ $product->name }}</td>
-       
-            <td>{{ $product->detail }}</td>
-            <td>{{$product->price}}</td>
-            <td>{{$product->discount_price}}</td>
-          
-            <th>{{ $product->category->title }}</th>
-
-       <td>{{$product->short_detail}}</td>
-            <td>{{$product->manuf_date}}</td>
-            <td>{{$product->slug}}</td>
-            <td>{{$product->stock}}</td>
-	        
-	        <td>
-
-                <form action="{{ route('products.destroy',$product->id) }}" method="POST">
-
-                    <a class="btn btn-info" href="{{ route('products.show',$product->id) }}">Show</a>
-
-                    @can('product-edit')
-
-                    <a class="btn btn-primary" href="{{ route('products.edit',$product->id) }}">Edit</a>
-
-                    @endcan
+                    </tr>
+                </thead>
+                <tbody>
 
 
+                    @foreach ($products as $product)
 
-                    @csrf
+                    <tr>
 
-                    @method('DELETE')
+                        <td>{{$loop->iteration  }}</td>
+                        <td>{{ $product->name }}</td>
+                
+                         <td>{{$product->price}}</td>
+                        <td>{{$product->discount_price}}</td>
+                    
+                        <th>{{ $product->category->title }}</th>
 
-                    @can('product-delete')
+                         <td>{{$product->stock}}</td>
+                        
+                        <td>
 
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                            <form action="{{ route('products.destroy',$product->id) }}" method="POST">
 
-                    @endcan
+                                <a class="btn btn-info" href="{{ route('products.show',$product->id) }}">Show</a>
 
-                </form>
+                                @can('product-edit')
 
-	        </td>
+                                <a class="btn btn-primary" href="{{ route('products.edit',$product->id) }}">Edit</a>
 
-	    </tr>
-
-	    @endforeach
-
-    </table>
+                                @endcan
 
 
 
-    {!! $products->links() !!}
+                                @csrf
+
+                                @method('DELETE')
+
+                                @can('product-delete')
+
+                                <button type="submit" class="btn btn-danger">Delete</button>
+
+                                @endcan
+
+                            </form>
+
+                        </td>
+
+                    </tr>
+
+                    @endforeach
+                </tbody>
+                </table>
+
+
+
+                {!! $products->links() !!}
+
+
+                     <a  href="{{ route('products.create') }}" class="btn btn-success btn-sm">Create New Product</a>
+              
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
 
 @endsection

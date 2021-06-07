@@ -2,14 +2,16 @@
 @extends('admin.index')
 @section('content')
 
-<section style="padding-top:60px;">
-    <div class="container">
-        <div class="col-md-12">    
-           
-                       <table class="table table-striped" id="datatable">
 
-                       <thead class="thead-dark">
-                            <tr>
+<section style="padding-top:60px;">
+   <div class="container">
+      <div class="col-md-12">
+         <div class="card p-2">
+            <div class="card-body">
+ 
+                <table class="table table-striped" style="width:100%" id="datatable">
+                <thead class="thead-dark" >
+                                 <tr>
                                 <th>S.N</th>           
                                 <th>Title</th>
                                 <th>Description</th>
@@ -65,13 +67,15 @@
                        </tbody>
                        
                        </table>       
+                    <a href="{{route('category.create')}}" class="btn btn-success btn-sm">Create New Category</a>
+                
                     </div>
-                    <a href="{{route('category.create')}}" class="btn btn-outline-success btn-sm">Create New Category</a>
                 </div>
-        
-    </div>
-</div>
-</section> 
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
 <!-- //model  -->
 
 <div id="deletemodal" class="modal fade">
@@ -101,3 +105,32 @@
  
 @endsection
 
+@section('script')
+<script>
+function handeldelete(id){
+    var form = document.getElementById('deletecategory')
+    form.action='category/' +id
+    
+    $('#deletemodal').modal('show')
+}
+
+    $(function() {
+      $('.toggle-class').change(function() {
+          var status = $(this).prop('checked') == true ? 'inactive' : 'active'; 
+          var id = $(this).data('id'); 
+           
+          $.ajax({
+              type: "GET",
+              dataType: "json",
+              url: '/category-status',
+              data: {'status': status, 'id': id},
+              success: function(data){
+                  alert(data.success)
+              }
+          });
+      })
+    })
+
+
+</script> 
+@endsection

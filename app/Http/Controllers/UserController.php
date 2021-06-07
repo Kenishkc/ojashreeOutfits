@@ -68,8 +68,13 @@ class UserController extends Controller
              'password'=>Hash::make($request->password),
              'photo'=>$imageName,
              ]);
-                        return redirect()->route('users.index')
-                        ->with('success','User created successfully');
+                
+          toastr()->success('User created successfully');
+                
+            return redirect()->route('users.index');
+                        
+
+
     }
 
     /**
@@ -125,9 +130,10 @@ class UserController extends Controller
         $user->update($input);
         DB::table('model_has_roles')->where('model_id',$id)->delete();
         $user->assignRole($request->input('roles'));
-        return redirect()->route('users.index')
-                        ->with('success','User updated successfully');
-    }
+         toastr()->success('User successfully update');
+                
+            return redirect()->route('users.index');
+         }
 
     /**
      * Remove the specified resource from storage.
@@ -138,7 +144,9 @@ class UserController extends Controller
     public function destroy($id)
     {
         User::find($id)->delete();
-        return redirect()->route('users.index')
-                        ->with('success','User deleted successfully');
+         toastr()->error('User deleted successfully');
+                
+            return redirect()->route('users.index');
+         
     }
 }

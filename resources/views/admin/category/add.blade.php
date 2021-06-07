@@ -1,10 +1,10 @@
 @extends('admin.index')
 @section('content')
 <section style="padding-top:60px;">
-    <div class="container" style="width: 95rem;">
-        <div class="col-md-8 offset-md-2">
-            <div class="card">
-               <div class="card-header text-bold text-white bg-secondary">Add New Category 
+    <div class="container">
+        <div class="col-md-8 offset-md-1">
+            <div class="card p-2 mb-5">
+              <div class="card-header text-bold text-white bg-secondary">Add New Category 
                </div>
                <div class="card-body">
         

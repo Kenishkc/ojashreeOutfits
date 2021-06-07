@@ -71,6 +71,7 @@ Route::get('/checkout',[UserPageController::class,'checkout']);
 
 //For Image
 Route::get('/product-details/{id}', [ProductController::class,'productDetail']);
+Route::get('/category-status',[CategoryController::class,'changeStatus']);
 
 Route::group(['middleware' => ['auth']], function() {
 
@@ -85,3 +86,4 @@ Route::group(['middleware' => ['auth']], function() {
 
 });
 
+Route::get('/searching',[UserPageController::class,'searchProduct'])->name('searchProduct');
