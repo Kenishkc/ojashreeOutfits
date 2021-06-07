@@ -62,6 +62,7 @@
                            
                      <img src="{{asset('images/large/'. $product->previewImage->images)}}"
                       alt="" width="250" height="300">
+
                      
                             
                     

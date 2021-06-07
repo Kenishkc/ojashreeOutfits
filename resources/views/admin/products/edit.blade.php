@@ -4,26 +4,6 @@
 
 @section('content')
 
-    <div class="row">
-
-        <div class="col-lg-12 margin-tb">
-
-            <div class="pull-left">
-
-                <h2>Edit Product</h2>
-
-            </div>
-
-            <div class="pull-right">
-
-                <a class="btn btn-primary" href="{{ route('products.index') }}"> Back</a>
-
-            </div>
-
-        </div>
-
-    </div>
-
 
 
     @if ($errors->any())
@@ -147,6 +127,7 @@
                                 </div>
 
                             </div>
+
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="from-group"> 
 
@@ -168,7 +149,15 @@
                                             </div>
                                             </div>
                         
-                            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                              <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                            <form action="{{route('delete',$image->id)}}" method="post">
+                                        @csrf
+                                        @Method('GET')
+                                        <input type="hidden" name="id" value="{{$image->id}}"/>
+                                        <button type="submit" class="btn btn-sm btn-danger ml-2">Delete</button>
+                                    </form>
+                               </div>
+         
 
                             <button type="submit" class="btn btn-primary">Submit</button>
 

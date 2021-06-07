@@ -15,8 +15,10 @@ class OrderController extends Controller
      */
     public function index()
     {
+
        $order=Order::all();
        return view('admin.order.index',compact('order'));
+
     }
 
     /**
@@ -26,7 +28,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+      
     }
 
     /**
@@ -37,7 +39,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -50,6 +52,7 @@ class OrderController extends Controller
     {
         $order=Order::findOrFail($id);
         return view('admin.order.show',compact('order'));
+
     }
 
     /**
@@ -60,7 +63,7 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        
+
     }
 
     /**
@@ -71,15 +74,14 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
+
     {   
         $order=Order::findOrFail($id);
         $order->status=$request->status;
         $order->save();
         toastr()->success('Status Changed!');
         return back();
-
-
-
+    
     }
 
     /**

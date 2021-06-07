@@ -32,7 +32,9 @@ class Product extends Model
     }
     public function previewImage()
     {
+
     return $this->hasOne(ProductImage::class);//don't forget to import
+
     }
 
 
