@@ -3,7 +3,7 @@
  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
  <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
          <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
              </div>
@@ -37,7 +37,7 @@
                             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Components:</h6>
-                            <a class="collapse-item" href="/add-users">
+                            <a class="collapse-item" href="{{route('users.create')}}">
                             <i class="fas fa-fw fa-plus"></i>
                             Add Users</a>
                             <a class="collapse-item" href="{{ route('users.index') }}">
@@ -96,7 +96,5 @@
         <i class="fas fa-shopping-cart"></i>
         Order</a>
       </li>
-
-
 
 </ul>

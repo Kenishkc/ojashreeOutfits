@@ -1,10 +1,12 @@
 @extends('admin.index')
 @section('content')
 <section style="padding-top:60px;">
-    <div class="container">
-        <div class="col-md-12">    
-           
-                       <table class="table table-striped" id="datatable">
+   <div class="container">
+      <div class="col-md-12">
+         <div class="card p-2">
+            <div class="card-body">
+      
+                       <table class="table table-striped" style="width:100%"  id="datatable">
 
                        <thead class="thead-dark">
                             <tr>
@@ -48,11 +50,10 @@
                        </tbody>
                        
                        </table>       
-                    </div>
-                    </div>
-        
-    </div>
-</div>
-</section> 
+                 </div>
+         </div>
+      </div>
+   </div>
+</section>
 
 @endsection

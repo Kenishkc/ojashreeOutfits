@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\StoreValidation;
 use App\Models\Category;
-use App\Models\Image;
 use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
 {
@@ -82,15 +83,39 @@ class ProductController extends Controller
         $products->save();
        
 
-        //for image 
+        //for image
+
 
         if ($request->hasFile('images')) {
             foreach($request->file('images') as $image)
             {
+               
             $imageName=time().'.'.$image->getClientOriginalName();
-            $image->move(public_path('images'),$imageName);
-    
-             Image::Create([
+            $destinationPath = public_path('images/medium');
+
+                if (!file_exists($destinationPath)) {
+                    mkdir($destinationPath, 666, true);
+                }
+                $img = Image::make($image->path());
+                $img->resize(250, 300, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($destinationPath.'/'.$imageName);
+        
+
+                $destinationPath = public_path('images/thumbnail');
+                if (!file_exists($destinationPath)) {
+                    mkdir($destinationPath, 666, true);
+                }
+            
+                $img->resize(100, 100, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($destinationPath.'/'.$imageName);
+            
+        
+                $destinationPath = public_path('images/large');
+                $image->move($destinationPath, $imageName);
+            
+             ProductImage::Create([
                  'product_id'=>$products->id,
                  'images'=> $imageName,
              ]);

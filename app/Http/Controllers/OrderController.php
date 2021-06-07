@@ -74,8 +74,14 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
 
+    {   
+        $order=Order::findOrFail($id);
+        $order->status=$request->status;
+        $order->save();
+        toastr()->success('Status Changed!');
+        return back();
+    
     }
 
     /**

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Models;
-use App\Models\Image;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -29,11 +28,13 @@ class Product extends Model
     
     public function images()
     {
-        return $this->hasMany(Image::class, );
+        return $this->hasMany(ProductImage::class, );
     }
     public function previewImage()
     {
-    return $this->hasOne(Image::class,);//don't forget to import
+
+    return $this->hasOne(ProductImage::class);//don't forget to import
+
     }
 
 

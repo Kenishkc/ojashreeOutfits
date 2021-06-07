@@ -1,105 +1,63 @@
 @extends('admin.index')
 @section('content')
+<section style="padding-top:60px;">
+   <div class="container">
+      <div class="col-md-12">
+         <div class="card p-2">
+            <div class="card-body">
+              
+               <table class="table table-striped display nowrap" style="width:100%" id="datatable">
+                  <thead class="thead-dark" >
+                     <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Image</th>
+                        <th>Email</th>
+                        <th>Roles</th>
+                        <th>Actions</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     @foreach ($data as $data)
+                     <tr>
+                        <td>{{$data['id']}}</td>
+                        <td>{{$data['name']}}</td>
+                           <td> 
+                          @if(is_null($data->photo)) 
+                            <img src="{{asset('profile_picture/default-pp.png')}}"  width="100px;" height="100px;" alt="image">
+                          @else
+                              <img src="{{asset('images')}}/{{$data->photo}}" width="100px;" height="100px;" alt="image">
+                          @endif          
+                          </td>
+                        <td>{{$data['email']}}</td>
+                        <td> @foreach($data->getRoleNames() as $role)
+                           {{ $role }}
+                           @endforeach
+                        </td>
+                        <td>
+                        <a class="btn btn-info" href="{{ route('users.show',$data->id) }}">Show</a>
 
-<div class="row">
+                            <a class="btn btn-primary" href="{{ route('users.edit',$data->id) }}">Edit</a>
 
-    <div class="col-lg-12 margin-tb">
+                              {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $data->id],'style'=>'display:inline']) !!}
 
-        <div class="pull-left">
+                                  {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
 
-            <h2>Users Management</h2>
-
-        </div>
-
-        <div class="pull-right">
-
-            <a class="btn btn-success" href="{{ route('users.create') }}"> Create New User</a>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-
-@if ($message = Session::get('success'))
-
-<div class="alert alert-success">
-
-  <p>{{ $message }}</p>
-
-</div>
-
-@endif
+                              {!! Form::close() !!}                    
+                        </td>
+                     </tr>
+                     @endforeach
+                  </tbody>
+               </table>
+                     <a  href="{{ route('users.create') }}" class="btn btn-success btn-sm">Add New User</a>
+            
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
 
 
 
-<table class="table table-bordered">
-
- <tr>
-
-   <th>No</th>
-
-   <th>Name</th>
-
-   <th>Email</th>
-
-   <th>Roles</th>
-
-   <th>image</th>
-
-   <th width="280px">Action</th>
-
- </tr>
-
- @foreach ($data as $key => $user)
-
-  <tr>
-
-    <td>{{ ++$i }}</td>
-
-    <td>{{ $user->name }}</td>
-
-    <td>{{ $user->email }}</td>
-    
-    <td>
-
-      @if(!empty($user->getRoleNames()))
-
-        @foreach($user->getRoleNames() as $v)
-
-           <label class="badge badge-success">{{ $v }}</label>
-
-        @endforeach
-
-      @endif
-
-    </td>
-    <td> 
-    @if(is_null($user->photo)) 
-      <img src="{{asset('images/default-image.jpg')}}"  width="100px;" height="100px;" alt="image">
-    @else
-        <img src="{{asset('images')}}/{{$user->photo}}" width="100px;" height="100px;" alt="image">
-    @endif          
-    </td>
-    <td>
-
-       <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Show</a>
-
-       <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a>
-
-        {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
-
-            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-
-        {!! Form::close() !!}
-
-    </td>
-
-  </tr>
-
- @endforeach
-
-</table>
 @endsection
+

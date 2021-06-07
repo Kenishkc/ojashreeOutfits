@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
@@ -148,5 +149,14 @@ class CategoryController extends Controller
       return redirect()->route('category.index');
     }
 
+
+   public function changeStatus(Request $request)
+    {
+        $banner = Banner::find($request->id);
+        $banner->status = $request->status;
+        $banner->save();
+  
+        return response()->json(['success'=>'Status change successfully.']);
+    }
 
 }

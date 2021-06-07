@@ -1,17 +1,12 @@
 @extends('admin.index')
 @section('content')
 <section style="padding-top:60px;">
-    <div class="container">
-        <div class="col-md-12">
-            <div class="card">
-            <div class="card-header text-center text-white text-bold bg-secondary">
-                        <h1>
-                       Banner List
-                        </h1>
-                              </div>
-            
-
-                       <table class="table table-striped" id="datatable">
+   <div class="container">
+      <div class="col-md-12">
+         <div class="card p-2">
+            <div class="card-body">
+      
+                       <table class="table table-striped" style="width:100%"  id="datatable">
 
                        <thead class="thead-dark">
                             <tr>
@@ -71,13 +66,15 @@
                        </tbody>
                        
                        </table>       
+                         <a href="{{route('banner.create')}}" class="btn btn-success btn-sm">Create New Banner</a>
+             
                     </div>
-                    <a href="{{route('banner.create')}}" class="btn btn-success btn-sm">Create New Banner</a>
-                </div>
-        </div>
-    </div>
-    </div>
-</section> 
+               </div> 
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
 <!-- //model  -->
 
 <div id="deletemodal" class="modal fade">

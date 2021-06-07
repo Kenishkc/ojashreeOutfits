@@ -14,6 +14,8 @@ class Order_items extends Model
     'quantity',
     'price',
     'amount',
+    'total',
+    'subtotal'
     
     ];
 

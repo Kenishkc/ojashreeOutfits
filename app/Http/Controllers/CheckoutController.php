@@ -7,6 +7,7 @@ use App\Models\Order_items;
 use App\Models\Shipping_addresses;
 use Illuminate\Http\Request;
 use Darryldecode\Cart\Cart;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class CheckoutController extends Controller
 {
@@ -45,34 +46,44 @@ class CheckoutController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-         $userId = auth()->user()->id; // or any string represents user identifier    
-        $cartItems =\Cart::session($userId)->getContent();
-         $order= new Order;
-       $order->user_id=$userId;
-       $order->payment_id=111;
-       $order->status='pending';
+    public function store(Request $request){
+                      
+            try {
+                    $userId = auth()->user()->id; // or any string represents user identifier    
+                    $cartItems =\Cart::session($userId)->getContent();
+                    $order= new Order;
+                    $order->user_id=$userId;
+                    $order->payment_id=$request->payment_id;
+                    $order->status='pending';
+                    if($order->save()){
 
-       if($order->save()){
+                        foreach($cartItems as $cart){
+                            $order_item=new Order_items();
+                            $order_item->order_id= $order->id;
+                            $order_item->product_id=$cart->id;
+                            $order_item->price=$cart->price;
+                            $order_item->quantity=$cart->quantity;
+                            $order_item->amount= \Cart::get($cart->id)->getPriceSum() ;
+                            $order_item->subtotal=\Cart::session($userId)->getSubTotal();
+                            $order_item->total=\Cart::session($userId)->getTotal();
+                            $order_item->save();
 
-            foreach($cartItems as $cart){
-                $order_item=new Order_items();
-                $order_item->order_id= $order->id;
-                $order_item->product_id=$cart->id;
-                $order_item->price=$cart->price;
-                $order_item->quantity=$cart->quantity;
-                $order_item->amount= \Cart::get($cart->id)->getPriceSum() ;
-                $order_item->save();
+                        }
+                        
+                
+                    }
+                    $request->merge([
+                        'user_id'=>$userId,
+                        'order_id'=>$order->id
+                    ]);
+                Shipping_addresses::create($request->all());
+                    \Cart::session($userId)->clear();
+                
 
-            }
-       }
-        $request->merge([
-            'user_id'=>$userId,
-            'order_id'=>$order->id
-        ]);
-       Shipping_addresses::create($request->all());
-        \Cart::session($userId)->clear();
+            } catch (ModelNotFoundException $exception) {
+
+                return back()->withError($exception->getMessage())->withInput();
+                }        
        toastr()->success('Order Placed Sucessfully !');
         return redirect()->route('userhome');
     
