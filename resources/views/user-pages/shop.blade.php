@@ -52,6 +52,8 @@
             </div>
             <div class="aa-product-catg-body">
               <ul class="aa-product-catg">
+           
+           @if(isset($product))
                 <!-- start single product item -->
                @foreach ($products as $product)
                    
@@ -172,6 +174,12 @@
               </div>
                 <!-- start single product item -->
               @endforeach
+              
+              @else
+              
+              <h3>No Products Founds</h3>
+              
+              @endif
                                                        
           </ul>
               <!-- quick view modal -->   

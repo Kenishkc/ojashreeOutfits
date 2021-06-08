@@ -87,3 +87,4 @@ Route::group(['middleware' => ['auth']], function() {
 });
 
 Route::get('/searching',[UserPageController::class,'searchProduct'])->name('searchProduct');
+Route::post('/searching-result',[UserPageController::class,'searchResult']);

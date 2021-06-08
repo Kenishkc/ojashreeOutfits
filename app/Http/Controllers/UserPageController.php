@@ -26,6 +26,9 @@ public function checkout(){
     return view('user-pages.checkout');
 }
 
+
+//for search function 
+
 public function searchProduct(Request $request){
     $query=$request->get('term','');
     $products=Product::where('name','LIKE','%'.$query.'%')->get();
@@ -41,6 +44,36 @@ public function searchProduct(Request $request){
     }else{
         return ['value'=>'No Result Found','id'=>''];
     }
+}
+
+
+public function searchResult(Request $request){
+    $searchingdata=$request->input('product_items');
+    $products=Product::where('name','LIKE','%'.$searchingdata.'%')->get();
+    if($products)
+    { 
+        if(isset($_POST['searchbtn'])){
+              
+            return view('user-pages.shop',compact('products'));
+
+          }else{
+            $product=Product::where('name','LIKE','%'.$searchingdata.'%')->first();
+            if($product){
+  
+              return view('user-pages.product-details',compact('product'));
+            }else{
+                  toastr()->error('Item not found');
+                 return redirect('/');
+            }
+          }
+        
+           }else{
+        toastr()->error('Item not found');
+        return redirect('/');
+    }
+
+
+
 }
 
 

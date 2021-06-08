@@ -166,10 +166,10 @@
                <!-- / cart box -->
                <!-- search box -->
                <div class="aa-search-box">
-                  <form action="/searching" id="search_form" method="POST">
+                  <form action="/searching-result" id="search_form" method="POST">
                      @csrf
                      <input type="text" name="product_items" id="search_text" placeholder="Search here ex. 'man' ">
-                     <button type="submit"><span class="fa fa-search"></span></button>
+                     <button name="searchbtn" type="submit"><span class="fa fa-search"></span></button>
                   </form>
                </div>
                <!-- / search box -->   
